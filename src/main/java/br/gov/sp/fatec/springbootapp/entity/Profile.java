@@ -24,7 +24,7 @@ public class Profile {
     private Long id;
 
     @Column(name = "profile_uuid")
-    private UUID uuid;
+    private String uuid;
 
     @Column(name = "profile_audio_hash")
     private String audioHash;
