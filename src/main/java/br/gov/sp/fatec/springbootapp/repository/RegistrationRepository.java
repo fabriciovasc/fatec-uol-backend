@@ -6,6 +6,5 @@ import br.gov.sp.fatec.springbootapp.entity.Registration;
 
 public interface RegistrationRepository extends JpaRepository<Registration, Long> {
     
-    public Registration findByEmail(String email);
 
 }

@@ -1,10 +1,14 @@
 package br.gov.sp.fatec.springbootapp.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,8 +32,8 @@ public class Registration {
     @Column(name = "registration_cellphone")
     private String cellphone;
 
-    // @ManyToMany(fetch = FetchType.LAZY, mappedBy = "registrations")
-    // private Set<Profile> profiles;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "registrations")
+    private Set<Profile> profiles;
 
     public Long getId() {
         return this.id;

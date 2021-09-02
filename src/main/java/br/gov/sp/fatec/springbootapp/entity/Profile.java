@@ -1,6 +1,7 @@
 package br.gov.sp.fatec.springbootapp.entity;
 
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,16 +24,16 @@ public class Profile {
     private Long id;
 
     @Column(name = "profile_uuid")
-    private String uuid;
+    private UUID uuid;
 
-    @Column(name = "profile_hash_audio")
-    private String hash_audio;
+    @Column(name = "profile_audio_hash")
+    private String audioHash;
 
-    @Column(name = "profile_hash_webgl")
-    private String hash_webgl;
+    @Column(name = "profile_webgl_hash")
+    private String webGLHash;
 
-    @Column(name = "profile_hash_canvas")
-    private String hash_canvas;
+    @Column(name = "profile_canvas_hash")
+    private String canvasHash;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "profile_registration",
@@ -49,36 +50,36 @@ public class Profile {
         this.id = id;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return this.uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
-    public String getHash_audio() {
-        return this.hash_audio;
+    public String getAudioHash() {
+        return audioHash;
     }
 
-    public void setHash_audio(String hash_audio) {
-        this.hash_audio = hash_audio;
+    public void setAudioHash(String audioHash) {
+        this.audioHash = audioHash;
     }
 
-    public String getHash_webgl() {
-        return this.hash_webgl;
+    public String getWebGLHash() {
+        return webGLHash;
     }
 
-    public void setHash_webgl(String hash_webgl) {
-        this.hash_webgl = hash_webgl;
+    public void setWebGLHash(String webGLHash) {
+        this.webGLHash = webGLHash;
     }
 
-    public String getHash_canvas() {
-        return this.hash_canvas;
+    public String getCanvasHash() {
+        return canvasHash;
     }
 
-    public void setHash_canvas(String hash_canvas) {
-        this.hash_canvas = hash_canvas;
+    public void setCanvasHash(String canvasHash) {
+        this.canvasHash = canvasHash;
     }
 
     public Set<Registration> getRegistrations() {
