@@ -1,7 +1,6 @@
 package br.gov.sp.fatec.springbootapp.entity;
 
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.springbootapp.controller.View;
+
 @Entity
 @Table(name = "profile")
 public class Profile {
@@ -21,25 +24,31 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "profile_id")
+    @JsonView({View.ProfileAllView.class, View.ProfileView.class})
     private Long id;
 
     @Column(name = "profile_uuid")
+    @JsonView({View.ProfileAllView.class, View.ProfileView.class})
     private String uuid;
 
     @Column(name = "profile_audio_hash")
+    @JsonView(View.ProfileView.class)
     private String audioHash;
 
     @Column(name = "profile_webgl_hash")
+    @JsonView(View.ProfileView.class)
     private String webGLHash;
 
     @Column(name = "profile_canvas_hash")
+    @JsonView(View.ProfileView.class)
     private String canvasHash;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "profile_registration",
         joinColumns = { @JoinColumn(name = "profile_id")},
         inverseJoinColumns = { @JoinColumn(name = "registration_id") }
     )
+    @JsonView({View.ProfileAllView.class, View.ProfileView.class})
     private Set<Registration> registrations;
 
     public Long getId() {
@@ -50,11 +59,11 @@ public class Profile {
         this.id = id;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return this.uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

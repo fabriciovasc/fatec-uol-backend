@@ -6,6 +6,8 @@ import br.gov.sp.fatec.springbootapp.entity.Profile;
 
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
-    public Profile findByCanvasHashOrWebGLHashOrCanvasHash(String hash);
+    public Profile findByCanvasHashOrWebGLHashOrAudioHash(String canvasHash, String webGLHash, String audioHash);
+
+    
 
 }

@@ -8,8 +8,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.springbootapp.controller.View;
 
 @Entity
 @Table(name = "registration")
@@ -18,18 +23,23 @@ public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "registration_id")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private Long id;
 
     @Column(name = "registration_email")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String email;
 
     @Column(name = "registration_password")
+    @JsonView(View.RegistrationView.class)
     private String password;
 
     @Column(name = "registration_name")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String name;
 
     @Column(name = "registration_cellphone")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String cellphone;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "registrations")
