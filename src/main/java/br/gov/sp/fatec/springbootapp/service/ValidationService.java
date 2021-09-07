@@ -11,6 +11,14 @@ public interface ValidationService {
             String audioHash, String webGLHash, String canvasHash);
 
     public List<Profile> findAllProfiles();
+
+    public Profile findProfileById(Long id);
+
+    public Profile findProfileByHash(String hash);
+
+    public List<Registration> findAllRegistrations();
+
+    public Registration findRegistrationById(Long id);
     
 }
 

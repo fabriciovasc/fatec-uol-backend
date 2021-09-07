@@ -10,7 +10,7 @@ public class HomeController {
 
     @GetMapping
     public String main() {
-        return "Bol validation API";
+        return "Bem vindo a API do BOL.com.br!";
     }
     
 }

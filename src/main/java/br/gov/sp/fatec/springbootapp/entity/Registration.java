@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -42,7 +41,7 @@ public class Registration {
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String cellphone;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "registrations")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
 
     public Long getId() {
@@ -83,5 +82,13 @@ public class Registration {
 
     public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
+    }
+
+    public Set<Profile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(Set<Profile> profiles) {
+        this.profiles = profiles;
     }
 }

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,11 @@ public class ProfileController {
     @JsonView(View.ProfileAllView.class)
     public List<Profile> get() {
         return validationService.findAllProfiles();
+    }
+
+    @GetMapping(value = "/{id}")
+    @JsonView(View.ProfileAllView.class)
+    public Profile getById(@PathVariable("id") Long id) {
+        return validationService.findProfileById(id);
     }
 }

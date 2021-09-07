@@ -2,6 +2,8 @@ package br.gov.sp.fatec.springbootapp.service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -63,5 +65,33 @@ public class ValidationServiceImpl implements ValidationService {
 
     public List<Profile> findAllProfiles() {
         return profRepo.findAll();
+    }
+
+    public Profile findProfileById(Long id) {
+        Optional<Profile> profileOptional = profRepo.findById(id);
+        if (profileOptional.isPresent()) {
+            return profileOptional.get();
+        }
+        throw new RuntimeException("Profile not found for id: " + id);
+    }
+
+    public Profile findProfileByHash(String hash) {
+        Profile profile = profRepo.findByCanvasHashOrWebGLHashOrAudioHash(hash, hash, hash);
+        if (profile != null) {
+            return profile;
+        }
+        throw new RuntimeException("Profile not found for hash: " + hash);
+    }
+
+    public List<Registration> findAllRegistrations() {
+        return regRepo.findAll();
+    }
+
+    public Registration findRegistrationById(Long id) {
+        Optional<Registration> registrationOptional = regRepo.findById(id);
+        if (registrationOptional.isPresent()) {
+            return registrationOptional.get();
+        }
+        throw new RuntimeException("Registration not found for id: " + id);
     }
 }
