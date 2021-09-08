@@ -16,6 +16,39 @@ Testes
 mvn test
 ```
 
+## API Rest
+Raiz
+```
+GET: <base_url>/api
+RESPONSE: Bem vindo a API do BOL.com.br!
+```
+
+Profile
+```
+GET: <base_url>/api/profile
+RESPONSE: [Profile]
+
+GET: <base_url>/api/profile/:id
+RESPONSE: Profile
+```
+
+Registration
+```
+GET: <base_url>/api/registration
+RESPONSE: [Registration]
+
+GET: <base_url>/api/registration/:id
+RESPONSE: Registration
+
+POST: <base_url>/api/registration
+BODY: {
+  email, password, name, cellphone, audioHash, webGLHash, canvasHash
+}
+RESPONSE: Registration
+
+```
+
+
 ## Atualizar submódulo 
 ```
 git checkout master
