@@ -48,6 +48,18 @@ RESPONSE: Registration
 
 ```
 
+POST Exemplo API
+```
+{
+  "email": "<email>",
+	"password": "<password>",
+	"name": "<name>",
+	"cellphone": "<celular>",
+	"audioHash": "<hashqualquer>",
+	"webGLHash": "<hashqualquer>",
+	"canvasHash": "<hashqualquer>"
+}
+```
 
 ## Atualizar submódulo 
 ```
