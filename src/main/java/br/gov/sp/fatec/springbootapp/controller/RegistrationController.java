@@ -1,6 +1,7 @@
 package br.gov.sp.fatec.springbootapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.sp.fatec.springbootapp.entity.Registration;
 import br.gov.sp.fatec.springbootapp.service.ValidationService;
+import br.gov.sp.fatec.springbootapp.repository.RegistrationRepository;
 
 @RestController
 @RequestMapping(value = "/registration")
@@ -27,6 +30,9 @@ public class RegistrationController {
 
     @Autowired
     private ValidationService validService;
+
+    @Autowired
+    private RegistrationRepository regRepo;
 
     @GetMapping
     @JsonView(View.RegistrationAllView.class)
@@ -59,4 +65,14 @@ public class RegistrationController {
         return new ResponseEntity<Registration>(reg, responseHeaders, HttpStatus.CREATED);
     }
     
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Registration> deleteRegistration(@PathVariable Long id) {
+        Optional<Registration> data = regRepo.findById(id);
+        if(data.isPresent()){
+            regRepo.delete(data.get());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
