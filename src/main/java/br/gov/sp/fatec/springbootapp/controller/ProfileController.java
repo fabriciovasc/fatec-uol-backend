@@ -42,13 +42,13 @@ public class ProfileController {
         return validationService.findProfileById(id);
     }
 
-    @DeleteMapping(value="/{id}")
-    public ResponseEntity<Profile> deleteProfile(@PathVariable Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Long> deleteProfile(@PathVariable Long id) {
         Optional<Profile> data = profRepo.findById(id);
-        if(data.isPresent()){
+        if (data.isPresent()) {
             profRepo.delete(data.get());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(id, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
