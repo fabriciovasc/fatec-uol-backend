@@ -64,7 +64,22 @@ public class RegistrationController {
         );
         return new ResponseEntity<Registration>(reg, responseHeaders, HttpStatus.CREATED);
     }
-    
+
+    @PutMapping(path = "/{id}")
+    @JsonView(View.RegistrationAllView.class)
+    public ResponseEntity<Registration> updateRegistration(@RequestBody RegistrationDto registration, @PathVariable Long id) {
+        Optional<Registration> oldReg = regRepo.findById(id);
+        if(oldReg.isPresent()){
+            Registration reg = oldReg.get();
+            reg.setName(registration.getName());
+            regRepo.save(reg);
+            return new ResponseEntity<Registration>(reg, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping(value="/{id}")
     public ResponseEntity<Registration> deleteRegistration(@PathVariable Long id) {
         Optional<Registration> data = regRepo.findById(id);
