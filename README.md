@@ -30,6 +30,9 @@ RESPONSE: [Profile]
 
 GET: <base_url>/api/profile/:id
 RESPONSE: Profile
+
+DELETE: <base_url>/api/profile/:id
+RESPONSE: Id
 ```
 
 Registration
@@ -46,31 +49,27 @@ BODY: {
 }
 RESPONSE: Registration
 
+DELETE: <base_url>/api/registration/:id
+RESOINSE: Id
+
+PUT: <base_url>/api/registration
+BODY: {
+  email, password, name, cellphone, audioHash, webGLHash, canvasHash
+}
+RESPONSE: Registration
 ```
 
-POST Exemplo API
+POST/PUT Exemplo API
 ```
 {
   "email": "<email>",
-	"password": "<password>",
-	"name": "<name>",
-	"cellphone": "<celular>",
-	"audioHash": "<hashqualquer>",
-	"webGLHash": "<hashqualquer>",
-	"canvasHash": "<hashqualquer>"
+  "password": "<password>",
+  "name": "<name>",
+  "cellphone": "<celular>",
+  "audioHash": "<hashqualquer>",
+  "webGLHash": "<hashqualquer>",
+  "canvasHash": "<hashqualquer>"
 }
-```
-
-## Atualizar submódulo 
-```
-git checkout master
-git pull
-git log --oneline origin/master -3
-git checkout -q <last_commit_hash>
-cd api-fatec-uol
-git add .
-git commit -m "message"
-git push
 ```
 
 
