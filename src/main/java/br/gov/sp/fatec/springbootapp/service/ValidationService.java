@@ -2,13 +2,13 @@ package br.gov.sp.fatec.springbootapp.service;
 
 import java.util.List;
 
+import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
 import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
 
 public interface ValidationService {
 
-    public Registration createRegistration(String email, String password, String name, String cellphone,
-            String audioHash, String webGLHash, String canvasHash);
+    public Registration createRegistration(RegistrationDto registration);
 
     public List<Profile> findAllProfiles();
 
@@ -19,6 +19,12 @@ public interface ValidationService {
     public List<Registration> findAllRegistrations();
 
     public Registration findRegistrationById(Long id);
+
+    public Long deleteProfile(Long id);
+
+    public Long deleteRegistration(Long id);
+
+    public Registration updateRegistration(RegistrationDto registration, Long id);
     
 }
 

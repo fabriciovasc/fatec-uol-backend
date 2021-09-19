@@ -3,7 +3,6 @@ package br.gov.sp.fatec.springbootapp.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -11,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
 import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
 import br.gov.sp.fatec.springbootapp.repository.ProfileRepository;
@@ -26,34 +26,35 @@ public class ValidationServiceImpl implements ValidationService {
     private ProfileRepository profRepo;
 
     @Transactional
-    public Registration createRegistration(String email, String password, String name, String cellphone,
-            String audioHash, String webGLHash, String canvasHash) {
+    public Registration createRegistration(RegistrationDto registrationDto) {
 
-        if (email.isEmpty() || password.isEmpty() || name.isEmpty() || cellphone.isEmpty() || audioHash.isEmpty()
-                || webGLHash.isEmpty() || canvasHash.isEmpty()) {
+        if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
+                || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
+                || registrationDto.getAudioHash().isEmpty() || registrationDto.getWebGLHash().isEmpty()
+                || registrationDto.getCanvasHash().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
         }
 
-        Registration registration = regRepo.findByEmail(email);
+        Registration registration = regRepo.findByEmail(registrationDto.getEmail());
         if (registration != null) {
             throw new RuntimeException("The email address must be unique");
         }
 
         registration = new Registration();
-        registration.setEmail(email);
-        registration.setPassword(password);
-        registration.setName(name);
-        registration.setCellphone(cellphone);
+        registration.setEmail(registrationDto.getEmail());
+        registration.setPassword(registrationDto.getPassword());
+        registration.setName(registrationDto.getName());
+        registration.setCellphone(registrationDto.getCellphone());
         regRepo.save(registration);
 
-        Profile profile = profRepo.findByCanvasHashOrWebGLHashOrAudioHash(canvasHash, webGLHash, audioHash);
+        Profile profile = profRepo.findByCanvasHashOrWebGLHashOrAudioHash(registrationDto.getCanvasHash(), registrationDto.getWebGLHash(), registrationDto.getAudioHash());
         if (profile == null) {
             profile = new Profile();
             profile.setUuid(UUID.randomUUID().toString());
-            profile.setAudioHash(audioHash);
-            profile.setCanvasHash(canvasHash);
-            profile.setWebGLHash(webGLHash);
+            profile.setAudioHash(registrationDto.getAudioHash());
+            profile.setCanvasHash(registrationDto.getCanvasHash());
+            profile.setWebGLHash(registrationDto.getWebGLHash());
             profile.setRegistrations(new HashSet<Registration>());
         }
 
@@ -93,5 +94,34 @@ public class ValidationServiceImpl implements ValidationService {
             return registrationOptional.get();
         }
         throw new RuntimeException("Registration not found for id: " + id);
+    }
+
+    public Long deleteProfile(Long id) {
+        Optional<Profile> pOptional = profRepo.findById(id);
+        if (pOptional.isPresent()) {
+            profRepo.delete(pOptional.get());
+            return id;
+        }
+        return null;
+    }
+
+    public Long deleteRegistration(Long id) {
+        Optional<Registration> rOptional = regRepo.findById(id);
+        if (rOptional.isPresent()) {
+            regRepo.delete(rOptional.get());
+            return id;
+        }
+        return null;
+    }
+
+    public Registration updateRegistration(RegistrationDto registration, Long id) {
+        Optional<Registration> oldReg = regRepo.findById(id);
+        if (oldReg.isPresent()) {
+            Registration reg = oldReg.get();
+            reg.setName(registration.getName());
+            regRepo.save(reg);
+            return reg;
+        }
+        return null;
     }
 }

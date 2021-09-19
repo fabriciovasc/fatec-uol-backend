@@ -4,7 +4,6 @@ public class View {
 
     public static class RegistrationView {
 
-
     };
 
     public static class RegistrationAllView {

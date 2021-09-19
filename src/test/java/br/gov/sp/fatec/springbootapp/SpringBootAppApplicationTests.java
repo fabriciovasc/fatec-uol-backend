@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
 import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
 import br.gov.sp.fatec.springbootapp.repository.ProfileRepository;
@@ -42,6 +42,9 @@ class SpringBootAppApplicationTests {
 
     @BeforeEach()
     void init() {
+        profRepo.deleteAll();
+        regRepo.deleteAll();
+
         reg1 = new Registration();
         reg1.setEmail("before@profile.com");
         reg1.setName("before");
@@ -109,8 +112,15 @@ class SpringBootAppApplicationTests {
 
     @Test
     void validationServiceParamsException() {
-        RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService
-                .createRegistration("", "xxxxxx", "foo", "999999999", "xxxyyyzzz", "xxxyyyzzz", "xxxyyyzzz"));
+        RegistrationDto registrationDto = new RegistrationDto();
+        registrationDto.setEmail("");
+        registrationDto.setPassword("password");
+        registrationDto.setName("profile");
+        registrationDto.setCellphone("999999999");
+        registrationDto.setAudioHash("xxxyyyzzz");
+        registrationDto.setCanvasHash("xxxyyyzzz");
+        registrationDto.setWebGLHash("xxxyyyzzz");
+        RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService.createRegistration(registrationDto));
         assertTrue(runtimeException.getMessage().equals("Invalid params"));
     }
 
@@ -123,23 +133,57 @@ class SpringBootAppApplicationTests {
         reg.setCellphone("999999999");
         regRepo.save(reg);
 
+        RegistrationDto registrationDto = new RegistrationDto();
+        registrationDto.setEmail("profile@profile.com");
+        registrationDto.setPassword("password");
+        registrationDto.setName("profile");
+        registrationDto.setCellphone("999999999");
+        registrationDto.setAudioHash("xxxyyyzzz");
+        registrationDto.setCanvasHash("xxxyyyzzz");
+        registrationDto.setWebGLHash("xxxyyyzzz");
+
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> validService.createRegistration(reg.getEmail(), reg.getPassword(), reg.getName(),
-                        reg.getCellphone(), "xxxyyyzzz", "xxxyyyzzz", "xxxyyyzzz"));
+                () -> validService.createRegistration(registrationDto));
         assertTrue(runtimeException.getMessage().equals("The email address must be unique"));
     }
 
     @Test
     void validationServiceCreateRegistration() {
-        assertNotNull(validService.createRegistration("profile@profile", "password", "profile", "999999999",
-                "xxxyyyzzz", "xxxyyyzzz", "xxxyyyzzz").getId());
+        String hash = "xxxyyyzzz";
+        RegistrationDto registrationDto = new RegistrationDto();
+        registrationDto.setEmail("profile@profile");
+        registrationDto.setPassword("password");
+        registrationDto.setName("profile");
+        registrationDto.setCellphone("999999999");
+        registrationDto.setAudioHash(hash);
+        registrationDto.setCanvasHash(hash);
+        registrationDto.setWebGLHash(hash);
+        assertNotNull(validService.createRegistration(registrationDto).getId());
     }
 
     @Test
     void validationServiceExistHashes() {
         String hash = "xxxyyyzzz";
-        validService.createRegistration("profile@profile", "password", "profile", "999999999", hash, hash, hash);
-        validService.createRegistration("profile2@profile2", "password2", "profile2", "999999990", hash, hash, hash);
+        RegistrationDto registrationDto = new RegistrationDto();
+        registrationDto.setEmail("profile@profile");
+        registrationDto.setPassword("password");
+        registrationDto.setName("profile");
+        registrationDto.setCellphone("999999999");
+        registrationDto.setAudioHash(hash);
+        registrationDto.setCanvasHash(hash);
+        registrationDto.setWebGLHash(hash);
+
+        RegistrationDto registrationDto2 = new RegistrationDto();
+        registrationDto2.setEmail("profile2@profile2.com");
+        registrationDto2.setPassword("password");
+        registrationDto2.setName("profile");
+        registrationDto2.setCellphone("999999999");
+        registrationDto2.setAudioHash(hash);
+        registrationDto2.setCanvasHash(hash);
+        registrationDto2.setWebGLHash(hash);
+
+        validService.createRegistration(registrationDto);
+        validService.createRegistration(registrationDto2);
         assertEquals(regRepo.findByOneOfHashes(hash).size(), 2);
     }
 
@@ -172,6 +216,24 @@ class SpringBootAppApplicationTests {
     @Test
     void validationServiceFindRegistrationById() {
         assertNotNull(validService.findRegistrationById(reg1.getId()));
+    }
+
+    @Test
+    void validationServiceDeleteProfile() {
+        assertNotNull(validService.deleteProfile(prof1.getId()));
+    }
+
+    @Test
+    void validationServiceDeleteRegistration() {
+        assertNotNull(validService.deleteProfile(prof1.getId()));
+        assertNotNull(validService.deleteRegistration(reg1.getId()));
+    }
+
+    @Test
+    void validationServiceUpdateRegistration() {
+        RegistrationDto registration = new RegistrationDto();
+        registration.setName("fabricio");
+        assertEquals(validService.updateRegistration(registration, reg1.getId()).getName(), "fabricio");
     }
 
     @AfterEach
