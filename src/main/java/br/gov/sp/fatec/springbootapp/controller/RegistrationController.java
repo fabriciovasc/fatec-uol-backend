@@ -31,19 +31,19 @@ public class RegistrationController {
     private ValidationService validService;
 
     @GetMapping
-    @JsonView(View.RegistrationView.class)
+    @JsonView(View.RegistrationAllView.class)
     public List<Registration> get() {
         return validService.findAllRegistrations();
     }
 
     @GetMapping(value = "/{id}")
-    @JsonView(View.RegistrationView.class)
+    @JsonView(View.RegistrationAllView.class)
     public Registration getById(@PathVariable("id") Long id) {
         return validService.findRegistrationById(id);
     }
 
     @PostMapping
-    @JsonView(View.RegistrationView.class)
+    @JsonView(View.RegistrationAllView.class)
     public ResponseEntity<Registration> create(@RequestBody RegistrationDto registration, UriComponentsBuilder uriComponentsBuilder) {
         Registration reg = validService.createRegistration(registration);
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -54,7 +54,7 @@ public class RegistrationController {
     }
 
     @PutMapping(path = "/{id}")
-    @JsonView(View.RegistrationView.class)
+    @JsonView(View.RegistrationAllView.class)
     public ResponseEntity<Registration> updateRegistration(@RequestBody RegistrationDto registration, @PathVariable Long id) {
         Registration reg = validService.updateRegistration(registration, id);
         if (reg != null) {

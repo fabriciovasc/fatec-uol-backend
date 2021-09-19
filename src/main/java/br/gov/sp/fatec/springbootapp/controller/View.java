@@ -6,16 +6,16 @@ public class View {
 
     };
 
-    public static class RegistrationAllView {
-        
+    public static class RegistrationAllView extends RegistrationView {
+
     };
 
     public static class ProfileView {
 
     };
 
-    public static class ProfileAllView {
+    public static class ProfileAllView extends ProfileView {
 
     };
-    
+
 }

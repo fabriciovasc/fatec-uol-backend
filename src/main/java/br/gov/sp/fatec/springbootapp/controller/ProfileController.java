@@ -26,13 +26,13 @@ public class ProfileController {
     private ValidationService validationService;
 
     @GetMapping
-    @JsonView(View.ProfileView.class)
+    @JsonView(View.ProfileAllView.class)
     public List<Profile> get() {
         return validationService.findAllProfiles();
     }
 
     @GetMapping(value = "/{id}")
-    @JsonView(View.ProfileView.class)
+    @JsonView(View.ProfileAllView.class)
     public Profile getById(@PathVariable("id") Long id) {
         return validationService.findProfileById(id);
     }
