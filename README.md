@@ -11,7 +11,7 @@ Build
 ```
 mvn spring-boot:run
 ```
-Tes
+Testes
 ```
 mvn test
 ```
