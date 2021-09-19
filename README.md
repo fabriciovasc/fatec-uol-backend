@@ -3,20 +3,20 @@
 # fatec-uol-backend
 Repositório criado para o back-end do projeto UOL/Fatec
 
-## Setup
-- Iniciar com o [gitpod.io](https://gitpod.io/#https://github.com/fabsvas/fatec-uol-backend)
+## Requisitos mínimos
+- Iniciar o ambiente no [gitpod.io](https://gitpod.io/#https://github.com/fabsvas/fatec-uol-backend)
 
-## Iniciar
+## Rodar projeto
 Build
 ```
 mvn spring-boot:run
 ```
-Testes
+Tes
 ```
 mvn test
 ```
 
-## API Rest
+## Rotas da API Rest
 Raiz
 ```
 GET: <base_url>/api
