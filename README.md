@@ -50,9 +50,9 @@ BODY: {
 RESPONSE: Registration
 
 DELETE: <base_url>/api/registration/:id
-RESOINSE: Id
+RESPONSE: Id
 
-PUT: <base_url>/api/registration
+PUT: <base_url>/api/registration/:id
 BODY: {
   email, password, name, cellphone, audioHash, webGLHash, canvasHash
 }
