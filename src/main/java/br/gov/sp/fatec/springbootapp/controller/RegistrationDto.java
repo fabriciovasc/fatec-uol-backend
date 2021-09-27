@@ -16,6 +16,10 @@ public class RegistrationDto {
 
     public String canvasHash;
 
+    public String userAgent;
+
+    public String fonts;
+
     public String getEmail() {
         return email;
     }
@@ -72,6 +76,20 @@ public class RegistrationDto {
         this.canvasHash = canvasHash;
     }
 
-    
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    public String getFonts() {
+        return fonts;
+    }
+
+    public void setFonts(String fonts) {
+        this.fonts = fonts;
+    }
     
 }

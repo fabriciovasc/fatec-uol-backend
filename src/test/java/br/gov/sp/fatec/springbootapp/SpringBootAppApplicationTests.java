@@ -56,6 +56,8 @@ class SpringBootAppApplicationTests {
         prof1.setAudioHash("qqwwee");
         prof1.setCanvasHash("qqwwee");
         prof1.setWebGLHash("qqwwee");
+        prof1.setUserAgent("qqwwee");
+        prof1.setFonts("qqwwee");
         prof1.setUuid(UUID.randomUUID().toString());
         prof1.setRegistrations(new HashSet<Registration>());
         prof1.getRegistrations().add(reg1);
@@ -80,6 +82,8 @@ class SpringBootAppApplicationTests {
         prof.setAudioHash("xxyyzz");
         prof.setCanvasHash("xxyyzz");
         prof.setWebGLHash("xxyyzz");
+        prof.setUserAgent("xxyyzz");
+        prof.setFonts("xxyyzz");
         prof.setUuid(UUID.randomUUID().toString());
         prof.setRegistrations(new HashSet<Registration>());
         Registration reg = new Registration();
@@ -120,6 +124,8 @@ class SpringBootAppApplicationTests {
         registrationDto.setAudioHash("xxxyyyzzz");
         registrationDto.setCanvasHash("xxxyyyzzz");
         registrationDto.setWebGLHash("xxxyyyzzz");
+        registrationDto.setUserAgent("xxxyyyzzz");
+        registrationDto.setFonts("xxxyyyzzz");
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService.createRegistration(registrationDto));
         assertTrue(runtimeException.getMessage().equals("Invalid params"));
     }
@@ -141,6 +147,8 @@ class SpringBootAppApplicationTests {
         registrationDto.setAudioHash("xxxyyyzzz");
         registrationDto.setCanvasHash("xxxyyyzzz");
         registrationDto.setWebGLHash("xxxyyyzzz");
+        registrationDto.setUserAgent("xxxyyyzzz");
+        registrationDto.setFonts("xxxyyyzzz");
 
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> validService.createRegistration(registrationDto));
@@ -158,6 +166,8 @@ class SpringBootAppApplicationTests {
         registrationDto.setAudioHash(hash);
         registrationDto.setCanvasHash(hash);
         registrationDto.setWebGLHash(hash);
+        registrationDto.setUserAgent(hash);
+        registrationDto.setFonts(hash);
         assertNotNull(validService.createRegistration(registrationDto).getId());
     }
 
@@ -172,6 +182,8 @@ class SpringBootAppApplicationTests {
         registrationDto.setAudioHash(hash);
         registrationDto.setCanvasHash(hash);
         registrationDto.setWebGLHash(hash);
+        registrationDto.setUserAgent(hash);
+        registrationDto.setFonts(hash);
 
         RegistrationDto registrationDto2 = new RegistrationDto();
         registrationDto2.setEmail("profile2@profile2.com");
@@ -181,6 +193,8 @@ class SpringBootAppApplicationTests {
         registrationDto2.setAudioHash(hash);
         registrationDto2.setCanvasHash(hash);
         registrationDto2.setWebGLHash(hash);
+        registrationDto2.setUserAgent(hash);
+        registrationDto2.setFonts(hash);
 
         validService.createRegistration(registrationDto);
         validService.createRegistration(registrationDto2);

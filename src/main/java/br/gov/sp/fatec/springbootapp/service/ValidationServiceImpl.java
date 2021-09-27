@@ -31,7 +31,8 @@ public class ValidationServiceImpl implements ValidationService {
         if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
                 || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
                 || registrationDto.getAudioHash().isEmpty() || registrationDto.getWebGLHash().isEmpty()
-                || registrationDto.getCanvasHash().isEmpty()) {
+                || registrationDto.getCanvasHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
+                || registrationDto.getFonts().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
         }
@@ -55,6 +56,8 @@ public class ValidationServiceImpl implements ValidationService {
             profile.setAudioHash(registrationDto.getAudioHash());
             profile.setCanvasHash(registrationDto.getCanvasHash());
             profile.setWebGLHash(registrationDto.getWebGLHash());
+            profile.setUserAgent(registrationDto.getUserAgent());
+            profile.setFonts(registrationDto.getFonts());
             profile.setRegistrations(new HashSet<Registration>());
         }
 

@@ -42,6 +42,14 @@ public class Profile {
     @Column(name = "profile_canvas_hash")
     @JsonView(View.ProfileView.class)
     private String canvasHash;
+
+    @Column(name = "profile_user_agent")
+    @JsonView(View.ProfileView.class)
+    private String userAgent;
+
+    @Column(name = "profile_fonts")
+    @JsonView(View.ProfileView.class)
+    private String fonts;
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "profile_registration",
@@ -89,6 +97,22 @@ public class Profile {
 
     public void setCanvasHash(String canvasHash) {
         this.canvasHash = canvasHash;
+    }
+
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    public String getFonts() {
+        return fonts;
+    }
+
+    public void setFonts(String fonts) {
+        this.fonts = fonts;
     }
 
     public Set<Registration> getRegistrations() {
