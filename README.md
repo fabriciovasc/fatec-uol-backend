@@ -1,65 +1,36 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/fabsvas/fatec-uol-backend)
 
 # fatec-uol-backend
-Repositório criado para o back-end do projeto UOL/Fatec
+Repositório de desenvolvimento do back-end do Aprendizado por Projeto Integrador (API) da FATEC São José dos Campos.
 
-## Requisitos mínimos
-- Iniciar o ambiente no [gitpod.io](https://gitpod.io/#https://github.com/fabsvas/fatec-uol-backend)
+## :clipboard: Requisitos
+Você precisará iniciar este projeto através da plataforma do GitPod.
 
-## Rodar projeto
-Build
+## :gear: Configuração
+Rodar projeto
 ```
 mvn spring-boot:run
 ```
-Testes
+Rodar testes
 ```
 mvn test
 ```
+## :pushpin: Informações da API
+Nesta seção você terá acesso as informações para requisições da API.
 
-## Rotas da API Rest
-Raiz
+```
+<base_url>: Significa a URL gerada pelo workspace do GitPod.
+Exemplo: https://8080-blush-mandrill-7o4f6lia.ws-us18.gitpod.io
+```
+
+Root
 ```
 GET: <base_url>/api
 RESPONSE: Bem vindo a API do BOL.com.br!
 ```
 
-Profile
-```
-GET: <base_url>/api/profile
-RESPONSE: [Profile]
-
-GET: <base_url>/api/profile/:id
-RESPONSE: Profile
-
-DELETE: <base_url>/api/profile/:id
-RESPONSE: Id
-```
-
-Registration
-```
-GET: <base_url>/api/registration
-RESPONSE: [Registration]
-
-GET: <base_url>/api/registration/:id
-RESPONSE: Registration
-
-POST: <base_url>/api/registration
-BODY: {
-  email, password, name, cellphone, audioHash, webGLHash, canvasHash
-}
-RESPONSE: Registration
-
-DELETE: <base_url>/api/registration/:id
-RESPONSE: Id
-
-PUT: <base_url>/api/registration/:id
-BODY: {
-  email, password, name, cellphone, audioHash, webGLHash, canvasHash
-}
-RESPONSE: Registration
-```
-
-POST/PUT Exemplo API
+### Registration
+Exemplo de corpo da requisição (POST, PUT)
 ```
 {
   "email": "<email>",
@@ -72,4 +43,44 @@ POST/PUT Exemplo API
 }
 ```
 
+GET
+```
+<base_url>/api/registration
+```
 
+GET
+```
+<base_url>/api/registration/:id
+```
+
+POST
+```
+<base_url>/api/registration
+```
+
+PUT
+```
+<base_url>/api/registration/:id
+```
+
+DELETE
+```
+<base_url>/api/registration/:id
+```
+
+Profile
+
+GET
+```
+<base_url>/api/profile
+```
+
+GET
+```
+<base_url>/api/profile/:id
+```
+
+DELETE
+```
+<base_url>/api/profile/:id
+```
