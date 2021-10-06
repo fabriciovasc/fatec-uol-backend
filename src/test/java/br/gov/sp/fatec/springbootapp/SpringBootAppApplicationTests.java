@@ -53,11 +53,7 @@ class SpringBootAppApplicationTests {
         regRepo.save(reg1);
 
         prof1 = new Profile();
-        prof1.setAudioHash("qqwwee");
-        prof1.setCanvasHash("qqwwee");
-        prof1.setWebGLHash("qqwwee");
-        prof1.setUserAgent("qqwwee");
-        prof1.setFonts("qqwwee");
+        prof1.setUniqueHash("qqwwee");
         prof1.setUuid(UUID.randomUUID().toString());
         prof1.setRegistrations(new HashSet<Registration>());
         prof1.getRegistrations().add(reg1);
@@ -79,11 +75,7 @@ class SpringBootAppApplicationTests {
     @Test
     void profileRepoSaveTest() {
         Profile prof = new Profile();
-        prof.setAudioHash("xxyyzz");
-        prof.setCanvasHash("xxyyzz");
-        prof.setWebGLHash("xxyyzz");
-        prof.setUserAgent("xxyyzz");
-        prof.setFonts("xxyyzz");
+        prof.setUniqueHash("xxyyzz");
         prof.setUuid(UUID.randomUUID().toString());
         prof.setRegistrations(new HashSet<Registration>());
         Registration reg = new Registration();
@@ -91,6 +83,14 @@ class SpringBootAppApplicationTests {
         reg.setName("profile");
         reg.setPassword("password");
         reg.setCellphone("999999999");
+        reg.setUserAgent("teste");
+        reg.setFonts("teste");
+        reg.setNameBrowser("teste");
+        reg.setVersionBrowser("teste");
+        reg.setSystem("teste");
+        reg.setVersionSystem("teste");
+        reg.setGpuModel("teste");
+        reg.setIp("teste");
         regRepo.save(reg);
         prof.getRegistrations().add(reg);
         profRepo.save(prof);
@@ -99,7 +99,7 @@ class SpringBootAppApplicationTests {
 
     @Test
     void profileRepoFindByHashes() {
-        assertNotNull(profRepo.findByCanvasHashOrWebGLHashOrAudioHash("qqwwee", "qqwwee", "qqwwee").getId());
+        assertNotNull(profRepo.findByUniqueHash("qqwwee").getId());
     }
 
     @Test
@@ -109,6 +109,14 @@ class SpringBootAppApplicationTests {
         reg.setName("profile");
         reg.setPassword("password");
         reg.setCellphone("999999999");
+        reg.setUserAgent("teste");
+        reg.setFonts("teste");
+        reg.setNameBrowser("teste");
+        reg.setVersionBrowser("teste");
+        reg.setSystem("teste");
+        reg.setVersionSystem("teste");
+        reg.setGpuModel("teste");
+        reg.setIp("teste");
         regRepo.save(reg);
 
         assertNotNull(regRepo.findByEmail("profile@profile.com").getId());
@@ -121,11 +129,17 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setAudioHash("xxxyyyzzz");
-        registrationDto.setCanvasHash("xxxyyyzzz");
-        registrationDto.setWebGLHash("xxxyyyzzz");
+        registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
         registrationDto.setFonts("xxxyyyzzz");
+        registrationDto.setUserAgent("teste");
+        registrationDto.setFonts("teste");
+        registrationDto.setNameBrowser("teste");
+        registrationDto.setVersionBrowser("teste");
+        registrationDto.setSystem("teste");
+        registrationDto.setVersionSystem("teste");
+        registrationDto.setGpuModel("teste");
+        registrationDto.setIp("teste");
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService.createRegistration(registrationDto));
         assertTrue(runtimeException.getMessage().equals("Invalid params"));
     }
@@ -144,11 +158,17 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setAudioHash("xxxyyyzzz");
-        registrationDto.setCanvasHash("xxxyyyzzz");
-        registrationDto.setWebGLHash("xxxyyyzzz");
+        registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
         registrationDto.setFonts("xxxyyyzzz");
+        registrationDto.setUserAgent("teste");
+        registrationDto.setFonts("teste");
+        registrationDto.setNameBrowser("teste");
+        registrationDto.setVersionBrowser("teste");
+        registrationDto.setSystem("teste");
+        registrationDto.setVersionSystem("teste");
+        registrationDto.setGpuModel("teste");
+        registrationDto.setIp("teste");
 
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> validService.createRegistration(registrationDto));
@@ -163,11 +183,17 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setAudioHash(hash);
-        registrationDto.setCanvasHash(hash);
-        registrationDto.setWebGLHash(hash);
+        registrationDto.setUniqueHash("xxxyyyzzz");
+        registrationDto.setUserAgent("xxxyyyzzz");
+        registrationDto.setFonts("xxxyyyzzz");
         registrationDto.setUserAgent(hash);
         registrationDto.setFonts(hash);
+        registrationDto.setNameBrowser(hash);
+        registrationDto.setVersionBrowser(hash);
+        registrationDto.setSystem(hash);
+        registrationDto.setVersionSystem(hash);
+        registrationDto.setGpuModel(hash);
+        registrationDto.setIp(hash);
         assertNotNull(validService.createRegistration(registrationDto).getId());
     }
 
@@ -179,9 +205,7 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setAudioHash(hash);
-        registrationDto.setCanvasHash(hash);
-        registrationDto.setWebGLHash(hash);
+        registrationDto.setUniqueHash(hash);
         registrationDto.setUserAgent(hash);
         registrationDto.setFonts(hash);
 
@@ -190,9 +214,7 @@ class SpringBootAppApplicationTests {
         registrationDto2.setPassword("password");
         registrationDto2.setName("profile");
         registrationDto2.setCellphone("999999999");
-        registrationDto2.setAudioHash(hash);
-        registrationDto2.setCanvasHash(hash);
-        registrationDto2.setWebGLHash(hash);
+        registrationDto2.setUniqueHash(hash);
         registrationDto2.setUserAgent(hash);
         registrationDto2.setFonts(hash);
 
@@ -216,7 +238,7 @@ class SpringBootAppApplicationTests {
 
     @Test
     void validationServiceFindProfileByHash() {
-        assertNotNull(validService.findProfileByHash(prof1.getAudioHash()));
+        assertNotNull(validService.findProfileByHash(prof1.getUniqueHash()));
     }
 
     @Test 

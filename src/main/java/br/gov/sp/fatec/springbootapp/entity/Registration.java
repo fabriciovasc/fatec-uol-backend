@@ -41,6 +41,38 @@ public class Registration {
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String cellphone;
 
+    @Column(name = "registration_user_agent")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String userAgent;
+
+    @Column(name = "registration_fonts")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String fonts;
+
+    @Column(name = "registration_name_browser")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String nameBrowser;
+
+    @Column(name = "registration_version_browser")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String versionBrowser;
+
+    @Column(name = "registration_system")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String system;
+
+    @Column(name = "registration_version_system")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String versionSystem;
+
+    @Column(name = "registration_gpu_model")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String gpuModel;
+
+    @Column(name = "registration_ip")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    private String ip;
+
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
 
@@ -82,6 +114,70 @@ public class Registration {
 
     public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
+    }
+
+    public String getUserAgent() {
+        return this.userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    public String getFonts() {
+        return this.fonts;
+    }
+
+    public void setFonts(String fonts) {
+        this.fonts = fonts;
+    }
+
+    public String getNameBrowser() {
+        return this.nameBrowser;
+    }
+
+    public void setNameBrowser(String nameBrowser) {
+        this.nameBrowser = nameBrowser;
+    }
+
+    public String getVersionBrowser() {
+        return this.versionBrowser;
+    }
+
+    public void setVersionBrowser(String versionBrowser) {
+        this.versionBrowser = versionBrowser;
+    }
+
+    public String getSystem() {
+        return this.system;
+    }
+
+    public void setSystem(String system) {
+        this.system = system;
+    }
+
+    public String getVersionSystem() {
+        return this.versionSystem;
+    }
+
+    public void setVersionSystem(String versionSystem) {
+        this.versionSystem = versionSystem;
+    }
+
+    public String getGpuModel() {
+        return this.gpuModel;
+    }
+
+    public void setGpuModel(String gpuModel) {
+        this.gpuModel = gpuModel;
+    }
+
+    public String getIp() {
+        return this.ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public Set<Profile> getProfiles() {

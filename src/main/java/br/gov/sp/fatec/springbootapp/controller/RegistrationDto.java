@@ -10,15 +10,23 @@ public class RegistrationDto {
 
     public String cellphone;
 
-    public String audioHash;
+    public String uniqueHash;
 
-    public String webGLHash;
+    public String nameBrowser;
 
-    public String canvasHash;
+    public String versionBrowser;
+
+    public String system;
+
+    public String versionSystem;
+
+    public String gpuModel;
+
+    public String fonts;
 
     public String userAgent;
 
-    public String fonts;
+    public String ip;
 
     public String getEmail() {
         return email;
@@ -52,32 +60,8 @@ public class RegistrationDto {
         this.cellphone = cellphone;
     }
 
-    public String getAudioHash() {
-        return audioHash;
-    }
-
-    public void setAudioHash(String audioHash) {
-        this.audioHash = audioHash;
-    }
-
-    public String getWebGLHash() {
-        return webGLHash;
-    }
-
-    public void setWebGLHash(String webGLHash) {
-        this.webGLHash = webGLHash;
-    }
-
-    public String getCanvasHash() {
-        return canvasHash;
-    }
-
-    public void setCanvasHash(String canvasHash) {
-        this.canvasHash = canvasHash;
-    }
-
     public String getUserAgent() {
-        return userAgent;
+        return this.userAgent;
     }
 
     public void setUserAgent(String userAgent) {
@@ -85,11 +69,69 @@ public class RegistrationDto {
     }
 
     public String getFonts() {
-        return fonts;
+        return this.fonts;
     }
 
     public void setFonts(String fonts) {
         this.fonts = fonts;
     }
+
+    public String getNameBrowser() {
+        return this.nameBrowser;
+    }
+
+    public void setNameBrowser(String nameBrowser) {
+        this.nameBrowser = nameBrowser;
+    }
+
+    public String getVersionBrowser() {
+        return this.versionBrowser;
+    }
+
+    public void setVersionBrowser(String versionBrowser) {
+        this.versionBrowser = versionBrowser;
+    }
+
+    public String getSystem() {
+        return this.system;
+    }
+
+    public void setSystem(String system) {
+        this.system = system;
+    }
+
+    public String getVersionSystem() {
+        return this.versionSystem;
+    }
+
+    public void setVersionSystem(String versionSystem) {
+        this.versionSystem = versionSystem;
+    }
+
+    public String getGpuModel() {
+        return this.gpuModel;
+    }
+
+    public void setGpuModel(String gpuModel) {
+        this.gpuModel = gpuModel;
+    }
+
+    public String getIp() {
+        return this.ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getUniqueHash() {
+        return uniqueHash;
+    }
+
+    public void setUniqueHash(String uniqueHash) {
+        this.uniqueHash = uniqueHash;
+    }
+
+    
     
 }

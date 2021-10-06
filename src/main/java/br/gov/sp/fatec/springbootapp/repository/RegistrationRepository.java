@@ -11,8 +11,8 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
 
     public Registration findByEmail(String email);
 
-    public List<Registration> findByProfilesAudioHash(String audioHash);
+    public List<Registration> findByProfilesUniqueHash(String uniqueHash);
 
-    @Query("select r from Registration r inner join r.profiles p where p.audioHash = ?1 or p.canvasHash = ?1 or p.webGLHash = ?1")
+    @Query("select r from Registration r inner join r.profiles p where p.uniqueHash = ?1")
     public List<Registration> findByOneOfHashes(String hash);
 }

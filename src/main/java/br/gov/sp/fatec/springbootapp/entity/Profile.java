@@ -31,25 +31,9 @@ public class Profile {
     @JsonView({View.ProfileAllView.class, View.ProfileView.class})
     private String uuid;
 
-    @Column(name = "profile_audio_hash")
+    @Column(name = "profile_unique_hash")
     @JsonView(View.ProfileView.class)
-    private String audioHash;
-
-    @Column(name = "profile_webgl_hash")
-    @JsonView(View.ProfileView.class)
-    private String webGLHash;
-
-    @Column(name = "profile_canvas_hash")
-    @JsonView(View.ProfileView.class)
-    private String canvasHash;
-
-    @Column(name = "profile_user_agent")
-    @JsonView(View.ProfileView.class)
-    private String userAgent;
-
-    @Column(name = "profile_fonts")
-    @JsonView(View.ProfileView.class)
-    private String fonts;
+    private String uniqueHash;
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "profile_registration",
@@ -75,44 +59,12 @@ public class Profile {
         this.uuid = uuid;
     }
 
-    public String getAudioHash() {
-        return audioHash;
+    public String getUniqueHash() {
+        return uniqueHash;
     }
 
-    public void setAudioHash(String audioHash) {
-        this.audioHash = audioHash;
-    }
-
-    public String getWebGLHash() {
-        return webGLHash;
-    }
-
-    public void setWebGLHash(String webGLHash) {
-        this.webGLHash = webGLHash;
-    }
-
-    public String getCanvasHash() {
-        return canvasHash;
-    }
-
-    public void setCanvasHash(String canvasHash) {
-        this.canvasHash = canvasHash;
-    }
-
-    public String getUserAgent() {
-        return userAgent;
-    }
-
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
-    public String getFonts() {
-        return fonts;
-    }
-
-    public void setFonts(String fonts) {
-        this.fonts = fonts;
+    public void setUniqueHash(String uniqueHash) {
+        this.uniqueHash = uniqueHash;
     }
 
     public Set<Registration> getRegistrations() {

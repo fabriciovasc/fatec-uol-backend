@@ -30,9 +30,11 @@ public class ValidationServiceImpl implements ValidationService {
 
         if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
                 || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
-                || registrationDto.getAudioHash().isEmpty() || registrationDto.getWebGLHash().isEmpty()
-                || registrationDto.getCanvasHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
-                || registrationDto.getFonts().isEmpty()) {
+                || registrationDto.getUniqueHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
+                || registrationDto.getFonts().isEmpty() || registrationDto.getNameBrowser().isEmpty()
+                || registrationDto.getVersionBrowser().isEmpty() || registrationDto.getSystem().isEmpty()
+                || registrationDto.getVersionSystem().isEmpty() || registrationDto.getGpuModel().isEmpty()
+                || registrationDto.getIp().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
         }
@@ -47,17 +49,21 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setPassword(registrationDto.getPassword());
         registration.setName(registrationDto.getName());
         registration.setCellphone(registrationDto.getCellphone());
+        registration.setUserAgent(registrationDto.getUserAgent());
+        registration.setFonts(registrationDto.getFonts());
+        registration.setNameBrowser(registrationDto.getNameBrowser());
+        registration.setVersionBrowser(registrationDto.getVersionBrowser());
+        registration.setSystem(registrationDto.getSystem());
+        registration.setVersionSystem(registrationDto.getVersionSystem());
+        registration.setGpuModel(registrationDto.getGpuModel());
+        registration.setIp(registrationDto.getIp());
         regRepo.save(registration);
 
-        Profile profile = profRepo.findByCanvasHashOrWebGLHashOrAudioHash(registrationDto.getCanvasHash(), registrationDto.getWebGLHash(), registrationDto.getAudioHash());
+        Profile profile = profRepo.findByUniqueHash(registrationDto.getUniqueHash());
         if (profile == null) {
             profile = new Profile();
             profile.setUuid(UUID.randomUUID().toString());
-            profile.setAudioHash(registrationDto.getAudioHash());
-            profile.setCanvasHash(registrationDto.getCanvasHash());
-            profile.setWebGLHash(registrationDto.getWebGLHash());
-            profile.setUserAgent(registrationDto.getUserAgent());
-            profile.setFonts(registrationDto.getFonts());
+            profile.setUniqueHash(registrationDto.getUniqueHash());
             profile.setRegistrations(new HashSet<Registration>());
         }
 
@@ -80,7 +86,7 @@ public class ValidationServiceImpl implements ValidationService {
     }
 
     public Profile findProfileByHash(String hash) {
-        Profile profile = profRepo.findByCanvasHashOrWebGLHashOrAudioHash(hash, hash, hash);
+        Profile profile = profRepo.findByUniqueHash(hash);
         if (profile != null) {
             return profile;
         }

@@ -16,6 +16,14 @@ create table registration (
   registration_password varchar(255) not null,
   registration_name varchar(255) not null,
   registration_cellphone varchar(100) not null,
+  registration_user_agent varchar(255) not null,
+  registration_fonts varchar(255) not null,
+  registration_name_browser varchar(255) not null,
+  registration_version_browser varchar(255) not null,
+  registration_system varchar(255) not null,
+  registration_version_system varchar(255) not null,
+  registration_gpu_model varchar(255) not null,
+  registration_ip varchar(255) not null,
   primary key (registration_id),
   unique key uni_registration_email (registration_email)
 );
@@ -23,11 +31,7 @@ create table registration (
 create table profile (
   profile_id bigint unsigned not null auto_increment,
   profile_uuid varchar(100) not null,
-  profile_audio_hash varchar(255) not null,
-  profile_webgl_hash varchar(255) not null,
-  profile_canvas_hash varchar(255) not null,
-  profile_user_agent varchar(255) not null,
-  profile_fonts varchar(255) not null,
+  profile_unique_hash varchar(255) not null,
   primary key (profile_id),
   unique key uni_profile_uuid (profile_uuid)
 );
