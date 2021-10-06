@@ -50,6 +50,14 @@ class SpringBootAppApplicationTests {
         reg1.setName("before");
         reg1.setPassword("password");
         reg1.setCellphone("999999999");
+        reg1.setUserAgent("teste");
+        reg1.setFonts("teste");
+        reg1.setNameBrowser("teste");
+        reg1.setVersionBrowser("teste");
+        reg1.setSystem("teste");
+        reg1.setVersionSystem("teste");
+        reg1.setGpuModel("teste");
+        reg1.setIp("teste");
         regRepo.save(reg1);
 
         prof1 = new Profile();
@@ -68,6 +76,14 @@ class SpringBootAppApplicationTests {
         reg.setName("profile");
         reg.setPassword("password");
         reg.setCellphone("999999999");
+        reg.setUserAgent("teste");
+        reg.setFonts("teste");
+        reg.setNameBrowser("teste");
+        reg.setVersionBrowser("teste");
+        reg.setSystem("teste");
+        reg.setVersionSystem("teste");
+        reg.setGpuModel("teste");
+        reg.setIp("teste");
         regRepo.save(reg);
         assertNotNull(reg.getId());
     }
@@ -151,6 +167,14 @@ class SpringBootAppApplicationTests {
         reg.setName("profile");
         reg.setPassword("password");
         reg.setCellphone("999999999");
+        reg.setUserAgent("teste");
+        reg.setFonts("teste");
+        reg.setNameBrowser("teste");
+        reg.setVersionBrowser("teste");
+        reg.setSystem("teste");
+        reg.setVersionSystem("teste");
+        reg.setGpuModel("teste");
+        reg.setIp("teste");
         regRepo.save(reg);
 
         RegistrationDto registrationDto = new RegistrationDto();
@@ -208,6 +232,12 @@ class SpringBootAppApplicationTests {
         registrationDto.setUniqueHash(hash);
         registrationDto.setUserAgent(hash);
         registrationDto.setFonts(hash);
+        registrationDto.setNameBrowser("teste");
+        registrationDto.setVersionBrowser("teste");
+        registrationDto.setSystem("teste");
+        registrationDto.setVersionSystem("teste");
+        registrationDto.setGpuModel("teste");
+        registrationDto.setIp("teste");
 
         RegistrationDto registrationDto2 = new RegistrationDto();
         registrationDto2.setEmail("profile2@profile2.com");
@@ -217,6 +247,12 @@ class SpringBootAppApplicationTests {
         registrationDto2.setUniqueHash(hash);
         registrationDto2.setUserAgent(hash);
         registrationDto2.setFonts(hash);
+        registrationDto2.setNameBrowser("teste");
+        registrationDto2.setVersionBrowser("teste");
+        registrationDto2.setSystem("teste");
+        registrationDto2.setVersionSystem("teste");
+        registrationDto2.setGpuModel("teste");
+        registrationDto2.setIp("teste");
 
         validService.createRegistration(registrationDto);
         validService.createRegistration(registrationDto2);

@@ -130,8 +130,6 @@ public class RegistrationDto {
 
     public void setUniqueHash(String uniqueHash) {
         this.uniqueHash = uniqueHash;
-    }
-
-    
+    }   
     
 }
