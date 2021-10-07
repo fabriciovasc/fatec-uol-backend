@@ -51,11 +51,10 @@ class SpringBootAppApplicationTests {
         reg1.setPassword("password");
         reg1.setCellphone("999999999");
         reg1.setUserAgent("teste");
-        reg1.setFonts("teste");
         reg1.setNameBrowser("teste");
         reg1.setVersionBrowser("teste");
         reg1.setSystem("teste");
-        reg1.setVersionSystem("teste");
+
         reg1.setGpuModel("teste");
         reg1.setIp("teste");
         regRepo.save(reg1);
@@ -77,11 +76,11 @@ class SpringBootAppApplicationTests {
         reg.setPassword("password");
         reg.setCellphone("999999999");
         reg.setUserAgent("teste");
-        reg.setFonts("teste");
+
         reg.setNameBrowser("teste");
         reg.setVersionBrowser("teste");
         reg.setSystem("teste");
-        reg.setVersionSystem("teste");
+
         reg.setGpuModel("teste");
         reg.setIp("teste");
         regRepo.save(reg);
@@ -100,11 +99,10 @@ class SpringBootAppApplicationTests {
         reg.setPassword("password");
         reg.setCellphone("999999999");
         reg.setUserAgent("teste");
-        reg.setFonts("teste");
         reg.setNameBrowser("teste");
         reg.setVersionBrowser("teste");
         reg.setSystem("teste");
-        reg.setVersionSystem("teste");
+
         reg.setGpuModel("teste");
         reg.setIp("teste");
         regRepo.save(reg);
@@ -126,11 +124,10 @@ class SpringBootAppApplicationTests {
         reg.setPassword("password");
         reg.setCellphone("999999999");
         reg.setUserAgent("teste");
-        reg.setFonts("teste");
+
         reg.setNameBrowser("teste");
         reg.setVersionBrowser("teste");
         reg.setSystem("teste");
-        reg.setVersionSystem("teste");
         reg.setGpuModel("teste");
         reg.setIp("teste");
         regRepo.save(reg);
@@ -147,13 +144,12 @@ class SpringBootAppApplicationTests {
         registrationDto.setCellphone("999999999");
         registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
-        registrationDto.setFonts("xxxyyyzzz");
         registrationDto.setUserAgent("teste");
-        registrationDto.setFonts("teste");
+
         registrationDto.setNameBrowser("teste");
         registrationDto.setVersionBrowser("teste");
         registrationDto.setSystem("teste");
-        registrationDto.setVersionSystem("teste");
+    
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService.createRegistration(registrationDto));
@@ -168,11 +164,9 @@ class SpringBootAppApplicationTests {
         reg.setPassword("password");
         reg.setCellphone("999999999");
         reg.setUserAgent("teste");
-        reg.setFonts("teste");
         reg.setNameBrowser("teste");
         reg.setVersionBrowser("teste");
         reg.setSystem("teste");
-        reg.setVersionSystem("teste");
         reg.setGpuModel("teste");
         reg.setIp("teste");
         regRepo.save(reg);
@@ -184,13 +178,10 @@ class SpringBootAppApplicationTests {
         registrationDto.setCellphone("999999999");
         registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
-        registrationDto.setFonts("xxxyyyzzz");
         registrationDto.setUserAgent("teste");
-        registrationDto.setFonts("teste");
         registrationDto.setNameBrowser("teste");
         registrationDto.setVersionBrowser("teste");
         registrationDto.setSystem("teste");
-        registrationDto.setVersionSystem("teste");
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
 
@@ -209,13 +200,10 @@ class SpringBootAppApplicationTests {
         registrationDto.setCellphone("999999999");
         registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
-        registrationDto.setFonts("xxxyyyzzz");
         registrationDto.setUserAgent(hash);
-        registrationDto.setFonts(hash);
         registrationDto.setNameBrowser(hash);
         registrationDto.setVersionBrowser(hash);
         registrationDto.setSystem(hash);
-        registrationDto.setVersionSystem(hash);
         registrationDto.setGpuModel(hash);
         registrationDto.setIp(hash);
         assertNotNull(validService.createRegistration(registrationDto).getId());
@@ -231,11 +219,9 @@ class SpringBootAppApplicationTests {
         registrationDto.setCellphone("999999999");
         registrationDto.setUniqueHash(hash);
         registrationDto.setUserAgent(hash);
-        registrationDto.setFonts(hash);
         registrationDto.setNameBrowser("teste");
         registrationDto.setVersionBrowser("teste");
         registrationDto.setSystem("teste");
-        registrationDto.setVersionSystem("teste");
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
 
@@ -246,11 +232,10 @@ class SpringBootAppApplicationTests {
         registrationDto2.setCellphone("999999999");
         registrationDto2.setUniqueHash(hash);
         registrationDto2.setUserAgent(hash);
-        registrationDto2.setFonts(hash);
         registrationDto2.setNameBrowser("teste");
         registrationDto2.setVersionBrowser("teste");
         registrationDto2.setSystem("teste");
-        registrationDto2.setVersionSystem("teste");
+
         registrationDto2.setGpuModel("teste");
         registrationDto2.setIp("teste");
 

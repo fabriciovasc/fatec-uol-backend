@@ -45,10 +45,6 @@ public class Registration {
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String userAgent;
 
-    @Column(name = "registration_fonts")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
-    private String fonts;
-
     @Column(name = "registration_name_browser")
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String nameBrowser;
@@ -60,10 +56,6 @@ public class Registration {
     @Column(name = "registration_system")
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String system;
-
-    @Column(name = "registration_version_system")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
-    private String versionSystem;
 
     @Column(name = "registration_gpu_model")
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
@@ -124,13 +116,6 @@ public class Registration {
         this.userAgent = userAgent;
     }
 
-    public String getFonts() {
-        return this.fonts;
-    }
-
-    public void setFonts(String fonts) {
-        this.fonts = fonts;
-    }
 
     public String getNameBrowser() {
         return this.nameBrowser;
@@ -154,14 +139,6 @@ public class Registration {
 
     public void setSystem(String system) {
         this.system = system;
-    }
-
-    public String getVersionSystem() {
-        return this.versionSystem;
-    }
-
-    public void setVersionSystem(String versionSystem) {
-        this.versionSystem = versionSystem;
     }
 
     public String getGpuModel() {

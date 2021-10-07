@@ -18,11 +18,7 @@ public class RegistrationDto {
 
     public String system;
 
-    public String versionSystem;
-
     public String gpuModel;
-
-    public String fonts;
 
     public String userAgent;
 
@@ -68,14 +64,6 @@ public class RegistrationDto {
         this.userAgent = userAgent;
     }
 
-    public String getFonts() {
-        return this.fonts;
-    }
-
-    public void setFonts(String fonts) {
-        this.fonts = fonts;
-    }
-
     public String getNameBrowser() {
         return this.nameBrowser;
     }
@@ -98,14 +86,6 @@ public class RegistrationDto {
 
     public void setSystem(String system) {
         this.system = system;
-    }
-
-    public String getVersionSystem() {
-        return this.versionSystem;
-    }
-
-    public void setVersionSystem(String versionSystem) {
-        this.versionSystem = versionSystem;
     }
 
     public String getGpuModel() {

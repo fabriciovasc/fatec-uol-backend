@@ -31,9 +31,8 @@ public class ValidationServiceImpl implements ValidationService {
         if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
                 || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
                 || registrationDto.getUniqueHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
-                || registrationDto.getFonts().isEmpty() || registrationDto.getNameBrowser().isEmpty()
-                || registrationDto.getVersionBrowser().isEmpty() || registrationDto.getSystem().isEmpty()
-                || registrationDto.getVersionSystem().isEmpty() || registrationDto.getGpuModel().isEmpty()
+                || registrationDto.getNameBrowser().isEmpty()|| registrationDto.getVersionBrowser().isEmpty() 
+                || registrationDto.getSystem().isEmpty() || registrationDto.getGpuModel().isEmpty()
                 || registrationDto.getIp().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
@@ -50,11 +49,9 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setName(registrationDto.getName());
         registration.setCellphone(registrationDto.getCellphone());
         registration.setUserAgent(registrationDto.getUserAgent());
-        registration.setFonts(registrationDto.getFonts());
         registration.setNameBrowser(registrationDto.getNameBrowser());
         registration.setVersionBrowser(registrationDto.getVersionBrowser());
         registration.setSystem(registrationDto.getSystem());
-        registration.setVersionSystem(registrationDto.getVersionSystem());
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
         regRepo.save(registration);
