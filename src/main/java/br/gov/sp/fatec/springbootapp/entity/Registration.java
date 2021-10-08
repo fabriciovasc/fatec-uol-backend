@@ -38,31 +38,31 @@ public class Registration {
     private String name;
 
     @Column(name = "registration_cellphone")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String cellphone;
 
     @Column(name = "registration_user_agent")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String userAgent;
 
     @Column(name = "registration_name_browser")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String nameBrowser;
 
     @Column(name = "registration_version_browser")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String versionBrowser;
 
     @Column(name = "registration_system")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String system;
 
     @Column(name = "registration_gpu_model")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String gpuModel;
 
     @Column(name = "registration_ip")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String ip;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
