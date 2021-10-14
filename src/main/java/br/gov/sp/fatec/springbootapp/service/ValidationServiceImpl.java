@@ -8,6 +8,9 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
@@ -129,5 +132,19 @@ public class ValidationServiceImpl implements ValidationService {
             return reg;
         }
         return null;
+    }
+
+    //ajustar projeto
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { //recebe nome do user
+        Usuario usuario = usuarioRepo.findByNome(username);
+        if (usuario == null) {
+        throw new UsernameNotFoundException("Usuário " + username + " não encontrado!");
+        }
+        return User.builder().username(username).password(usuario.getSenha()) //monta objeto tipo userDetails, passando user, senha e autorizaçoes
+            .authorities(usuario.getAutorizacoes().stream()
+                .map(Autorizacao::getNome).collect(Collectors.toList())
+                .toArray(new String[usuario.getAutorizacoes().size()])) //transforma em um vetor, com cada autorizaçao
+            .build();
     }
 }
