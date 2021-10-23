@@ -1,5 +1,6 @@
 ports:
   - port: 8080
 tasks:
+  - before: git checkout feature/security-jwt && git pull
   - init: mysql < DDL.sql
 image: gitpod/workspace-mysql
