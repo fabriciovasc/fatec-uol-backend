@@ -136,15 +136,13 @@ public class ValidationServiceImpl implements ValidationService {
 
     //ajustar projeto
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { //recebe nome do user
-        Usuario usuario = usuarioRepo.findByNome(username);
-        if (usuario == null) {
-        throw new UsernameNotFoundException("Usuário " + username + " não encontrado!");
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException { //recebe nome do user
+        Registration user = regRepo.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("Usuário " + email + " não encontrado!");
         }
-        return User.builder().username(username).password(usuario.getSenha()) //monta objeto tipo userDetails, passando user, senha e autorizaçoes
-            .authorities(usuario.getAutorizacoes().stream()
-                .map(Autorizacao::getNome).collect(Collectors.toList())
-                .toArray(new String[usuario.getAutorizacoes().size()])) //transforma em um vetor, com cada autorizaçao
+        return User.builder().username(email).password(user.getPassword()) //monta objeto tipo userDetails, passando user, senha e autorizaçoes
+            .authorities(user.getRole()) // seta o role do usuario nas autorizacoes
             .build();
     }
 }

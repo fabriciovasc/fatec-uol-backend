@@ -65,6 +65,10 @@ public class Registration {
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String ip;
 
+    @Column(name = "registration_role")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private String role;
+
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
 
@@ -163,5 +167,14 @@ public class Registration {
 
     public void setProfiles(Set<Profile> profiles) {
         this.profiles = profiles;
+    }
+
+    
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

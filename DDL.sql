@@ -18,6 +18,7 @@ create table registration (
   registration_system varchar(255) not null,
   registration_gpu_model varchar(255) not null,
   registration_ip varchar(255) not null,
+  registration_role varchar(20) not null,
   primary key (registration_id),
   unique key uni_registration_email (registration_email)
 );
