@@ -57,6 +57,7 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setSystem(registrationDto.getSystem());
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
+        registration.setRole("USER");
         regRepo.save(registration);
 
         Profile profile = profRepo.findByUniqueHash(registrationDto.getUniqueHash());

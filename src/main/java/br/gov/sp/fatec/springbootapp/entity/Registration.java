@@ -169,7 +169,7 @@ public class Registration {
         this.profiles = profiles;
     }
 
-    
+
     public String getRole() {
         return this.role;
     }
