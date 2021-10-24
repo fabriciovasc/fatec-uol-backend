@@ -18,4 +18,8 @@ public class View {
 
     };
 
+    public static class AuthView {
+
+    };
+
 }

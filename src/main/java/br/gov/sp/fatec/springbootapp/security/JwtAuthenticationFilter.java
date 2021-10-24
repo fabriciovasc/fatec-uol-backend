@@ -26,6 +26,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
       if (authorization != null) { //verifica se nao ta nulo
         Authentication credentials = JwtUtils.parseToken(authorization.replaceAll("Bearer ", "")); //abre o token e tira o bearer ficando só com o token
         //parseToken valida o token, se errado cai no catch
+        System.out.print(credentials);
         SecurityContextHolder.getContext().setAuthentication(credentials); //faz login com o token, usando o UsernamePasswordAuthenticationToken
       }
       chain.doFilter(request, response); //proximo filtro

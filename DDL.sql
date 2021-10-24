@@ -64,9 +64,8 @@ insert into registration (
   registration_version_browser,
   registration_system,
   registration_gpu_model,
-  registration_ip,
-  registration_role)
-    values('admin@admin.com', '$2a$10$i3.Z8Yv1Fwl0I5SNjdCGkOTRGQjGvHjh/gMZhdc3e7LIovAklqM6C', 'admin', '12', 'admin', 'admin', '10', 'windows', 'rtx', '0.0.0.0', 'ADMIN');
+  registration_ip)
+    values('admin@admin.com', '$2a$10$i3.Z8Yv1Fwl0I5SNjdCGkOTRGQjGvHjh/gMZhdc3e7LIovAklqM6C', 'admin', '12', 'admin', 'admin', '10', 'windows', 'rtx', '0.0.0.0');
 insert into profile (
   profile_uuid,
   profile_unique_hash
@@ -74,5 +73,5 @@ insert into profile (
     values('1234', '1234');
 insert into profile_registration values(1, 1);
 insert into auth (auth_role)
-    values('ADMIN');
+    values('ROLE_ADMIN');
 insert into registration_auth values (1, 1);

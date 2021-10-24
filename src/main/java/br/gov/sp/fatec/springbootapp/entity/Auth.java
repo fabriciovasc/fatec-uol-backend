@@ -19,17 +19,17 @@ import br.gov.sp.fatec.springbootapp.controller.View;
 @Entity
 @Table(name = "auth")
 public class Auth {
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView(View.RegistrationAllView.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auth_id")
     private Long id;
 
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView({View.RegistrationView.class, View.AuthView.class})
     @Column(name = "auth_role")
     private String role;
 
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
+    @JsonView(View.AuthView.class)
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "auths")
     private Set<Registration> registrations;
 

@@ -67,10 +67,6 @@ public class Registration {
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String ip;
 
-    @Column(name = "registration_role")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
-    private String role;
-
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
 
@@ -81,6 +77,14 @@ public class Registration {
         inverseJoinColumns = { @JoinColumn(name = "auth_id") }
         )
     private Set<Auth> auths;
+
+    public Set<Auth> getAuths() {
+        return auths;
+    }
+
+    public void setAuths(Set<Auth> auths) {
+        this.auths = auths;
+    }
 
     public Long getId() {
         return this.id;
@@ -177,14 +181,5 @@ public class Registration {
 
     public void setProfiles(Set<Profile> profiles) {
         this.profiles = profiles;
-    }
-
-
-    public String getRole() {
-        return this.role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

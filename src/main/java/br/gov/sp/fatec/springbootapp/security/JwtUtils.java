@@ -25,7 +25,7 @@ public class JwtUtils {
     Login usuarioSemSenha = new Login(); //objeto classe login
     usuarioSemSenha.setUsername(usuario.getName()); //seta username
     if (!usuario.getAuthorities().isEmpty()) { //verificaçao para checar se tem autorizaçao
-      usuarioSemSenha.setAutorizacao(usuario.getAuthorities().iterator().next().getAuthority()); //pega e seta a primeira autorizaçao do usuario
+      usuarioSemSenha.setAuth(usuario.getAuthorities().iterator().next().getAuthority()); //pega e seta a primeira autorizaçao do usuario
     }
     String usuarioJson = mapper.writeValueAsString(usuarioSemSenha); //gera um json e coloca dentro do token
     Date agora = new Date();
@@ -41,7 +41,7 @@ public class JwtUtils {
         String.class); //da um parse passando a chave e o token, verificando validade ou adulteraçao, lançando exceçoes, .get("userDetails", String.class) pega o user details
     Login usuario = mapper.readValue(credentialsJson, Login.class); //transforma na classe login
     UserDetails userDetails = User.builder().username(usuario.getUsername()).password("secret")
-        .authorities(usuario.getAutorizacao()).build(); //gera objeto do tipo userDetails
+        .authorities(usuario.getAuth()).build(); //gera objeto do tipo userDetails
     return new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword(),
         userDetails.getAuthorities()); //gera outro objeto UsernamePasswordAuthenticationToken contendo user, senha e autorizaçoes, OBJETO USADO PARA O LOGIN NO FILTER
   }
