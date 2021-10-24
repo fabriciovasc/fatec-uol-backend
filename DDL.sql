@@ -38,3 +38,23 @@ create table profile_registration (
   foreign key pr_profile_fk (profile_id) references profile (profile_id) on delete restrict on update cascade,
   foreign key pr_registration_fk (registration_id) references registration (registration_id) on delete restrict on update cascade
 );
+
+insert into registration(
+  registration_email,
+  registration_password,
+  registration_name,
+  registration_cellphone,
+  registration_user_agent,
+  registration_name_browser,
+  registration_version_browser,
+  registration_system,
+  registration_gpu_model,
+  registration_ip,
+  registration_role)
+    values('admin@admin.com', '$2a$10$i3.Z8Yv1Fwl0I5SNjdCGkOTRGQjGvHjh/gMZhdc3e7LIovAklqM6C', 'admin', '12', 'admin', 'admin', '10', 'windows', 'rtx', '0.0.0.0', 'ADMIN');
+insert into profile(
+  profile_uuid,
+  profile_unique_hash
+)
+    values('1234', '1234');
+insert into profile_registration values(1, 1);
