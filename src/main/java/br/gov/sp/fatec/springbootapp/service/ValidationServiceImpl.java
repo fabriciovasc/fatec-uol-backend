@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
@@ -94,6 +95,7 @@ public class ValidationServiceImpl implements ValidationService {
         throw new RuntimeException("Profile not found for hash: " + hash);
     }
 
+    // @PreAuthorize("hasRole('ADMIN')")
     public List<Registration> findAllRegistrations() {
         return regRepo.findAll();
     }

@@ -39,6 +39,21 @@ create table profile_registration (
   foreign key pr_registration_fk (registration_id) references registration (registration_id) on delete restrict on update cascade
 );
 
+create table auth (
+  auth_id bigint unsigned not null auto_increment,
+  auth_role varchar(20) not null,
+  primary key (auth_id),
+  unique key unique_auth_role (auth_role)
+);
+
+create table registration_auth (
+  registration_id bigint unsigned not null,
+  auth_id bigint unsigned not null,
+  primary key (registration_id, auth_id),
+  foreign key auth_registration_fk (registration_id) references registration (registration_id) on delete restrict on update cascade,
+  foreign key auth_auth_fk (auth_id) references auth (auth_id) on delete restrict on update cascade
+);
+
 insert into registration(
   registration_email,
   registration_password,
@@ -58,3 +73,6 @@ insert into profile(
 )
     values('1234', '1234');
 insert into profile_registration values(1, 1);
+insert into auth(auth_role)
+    values('ADMIN')
+insert into registration_auth values (1, 1);

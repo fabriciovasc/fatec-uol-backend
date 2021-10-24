@@ -8,8 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -71,6 +73,14 @@ public class Registration {
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
+
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "registration_auth",
+        joinColumns = { @JoinColumn(name = "registration_id")},
+        inverseJoinColumns = { @JoinColumn(name = "auth_id") }
+        )
+    private Set<Auth> auths;
 
     public Long getId() {
         return this.id;
