@@ -6,9 +6,11 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.annotation.security.PermitAll;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -89,10 +91,14 @@ public class ValidationServiceImpl implements ValidationService {
         return registration;
     }
 
+    @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<Profile> findAllProfiles() {
         return profRepo.findAll();
     }
 
+    @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Profile findProfileById(Long id) {
         Optional<Profile> profileOptional = profRepo.findById(id);
         if (profileOptional.isPresent()) {
@@ -101,6 +107,8 @@ public class ValidationServiceImpl implements ValidationService {
         throw new RuntimeException("Profile not found for id: " + id);
     }
 
+    @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Profile findProfileByHash(String hash) {
         Profile profile = profRepo.findByUniqueHash(hash);
         if (profile != null) {
@@ -110,11 +118,13 @@ public class ValidationServiceImpl implements ValidationService {
     }
 
     @Override
-    @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<Registration> findAllRegistrations() {
         return regRepo.findAll();
     }
 
+    @Override
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'USER')")
     public Registration findRegistrationById(Long id) {
         Optional<Registration> registrationOptional = regRepo.findById(id);
         if (registrationOptional.isPresent()) {
@@ -123,6 +133,8 @@ public class ValidationServiceImpl implements ValidationService {
         throw new RuntimeException("Registration not found for id: " + id);
     }
 
+    @Override
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'USER')")
     public Long deleteProfile(Long id) {
         Optional<Profile> pOptional = profRepo.findById(id);
         if (pOptional.isPresent()) {
@@ -132,6 +144,8 @@ public class ValidationServiceImpl implements ValidationService {
         return null;
     }
 
+    @Override
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'USER')")
     public Long deleteRegistration(Long id) {
         Optional<Registration> rOptional = regRepo.findById(id);
         if (rOptional.isPresent()) {
@@ -141,6 +155,8 @@ public class ValidationServiceImpl implements ValidationService {
         return null;
     }
 
+    @Override
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'USER')")
     public Registration updateRegistration(RegistrationDto registration, Long id) {
         Optional<Registration> oldReg = regRepo.findById(id);
         if (oldReg.isPresent()) {
