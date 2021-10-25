@@ -84,3 +84,18 @@ DELETE
 ```
 <base_url>/api/profile/:id
 ```
+
+Login
+
+POST
+```
+<base_url>/api/login
+```
+
+BODY
+```
+{
+  username: <email>
+  password: <senha>
+}
+```
