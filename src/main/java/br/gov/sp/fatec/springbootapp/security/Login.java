@@ -1,13 +1,11 @@
 package br.gov.sp.fatec.springbootapp.security;
 
-public class Login { // clase para realizar login no sistema
+public class Login {
 
-  // passa usuario e senha
   private String username;
 
   private String password;
 
-  // retorna objeto com auth (admin, user) e token de acesso
   private String auth;
 
   private String token;

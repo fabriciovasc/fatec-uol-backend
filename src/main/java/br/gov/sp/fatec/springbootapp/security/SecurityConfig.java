@@ -2,7 +2,6 @@ package br.gov.sp.fatec.springbootapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,33 +14,32 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-@EnableWebSecurity //habilita config de segurança padrão
-@EnableGlobalMethodSecurity(prePostEnabled = true) //habilitar segurança por anotaçao
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private UserDetailsService userDetailsService; //serviço de login
+  private UserDetailsService userDetailsService;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable() //deabilita csrf (token antigo)
-        .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class) //filtro (código quie intercepta requests), tudo passa por ele, feito antes do token
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //loga, fez requisiçao, desloga logo apos completa
+    http.csrf().disable() // deabilita csrf (token antigo)
+        .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
 
   @Override
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService); //serviço que busca dados do user
+    auth.userDetailsService(userDetailsService);
   }
 
   @Bean
   public PasswordEncoder passwordEncoderBean() {
-    return new BCryptPasswordEncoder(); //encode para senha bcrypt
+    return new BCryptPasswordEncoder();
   }
 
   @Bean
-  @Override // autenticaçao para fazer na mão dps
+  @Override
   public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }

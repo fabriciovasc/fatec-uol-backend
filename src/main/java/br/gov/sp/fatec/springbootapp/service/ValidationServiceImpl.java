@@ -168,7 +168,6 @@ public class ValidationServiceImpl implements ValidationService {
         return null;
     }
 
-    // ajustar projeto
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Registration registration = regRepo.findByEmail(username);

@@ -17,21 +17,20 @@ import org.springframework.web.filter.GenericFilterBean;
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
   @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) //recebe request, volta resposta, trabalha em cadeia (até chegar no controller)
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
 
     try {
-      HttpServletRequest servletRequest = (HttpServletRequest) request; //pega requisiçao
-      String authorization = servletRequest.getHeader(HttpHeaders.AUTHORIZATION); //utiliza o header da request (onde fica o auth {token})
-      if (authorization != null) { //verifica se nao ta nulo
-        Authentication credentials = JwtUtils.parseToken(authorization.replaceAll("Bearer ", "")); //abre o token e tira o bearer ficando só com o token
-        //parseToken valida o token, se errado cai no catch
-        System.out.print(credentials);
-        SecurityContextHolder.getContext().setAuthentication(credentials); //faz login com o token, usando o UsernamePasswordAuthenticationToken
+      HttpServletRequest servletRequest = (HttpServletRequest) request;
+      System.out.print(servletRequest);
+      String authorization = servletRequest.getHeader(HttpHeaders.AUTHORIZATION);
+      if (authorization != null) {
+        Authentication credentials = JwtUtils.parseToken(authorization.replaceAll("Bearer ", ""));
+        SecurityContextHolder.getContext().setAuthentication(credentials);
       }
-      chain.doFilter(request, response); //proximo filtro
-    } catch (Throwable t) { //exceção
-      HttpServletResponse servletResponse = (HttpServletResponse) response; //resposta de erro
+      chain.doFilter(request, response);
+    } catch (Throwable t) {
+      HttpServletResponse servletResponse = (HttpServletResponse) response;
       servletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, t.getMessage());
     }
   }
