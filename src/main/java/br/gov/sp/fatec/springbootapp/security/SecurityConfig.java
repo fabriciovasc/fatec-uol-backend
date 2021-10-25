@@ -16,30 +16,35 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+// Habilita a segurança padrão e a segurança por anotação
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private UserDetailsService userDetailsService;
+  // Declarando o serviço para o LOGIN
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable() // deabilita csrf (token antigo)
-        .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    http.csrf().disable() // Desabilita o CSRF (forma de token antigo)
+        .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).sessionManagement() // Adiciona filtros antes de entrar no Spring Security
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // O login só acontece quando há requisição, ou seja, cada requisição vai ter tratada com um novo login e o antigo será jogado fora
   }
 
   @Override
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    // Serviço que busca os dados do usuário para autenticação
     auth.userDetailsService(userDetailsService);
   }
 
   @Bean
   public PasswordEncoder passwordEncoderBean() {
+    // Criptografia BCrypt para a senha da autenticação
     return new BCryptPasswordEncoder();
   }
 
   @Bean
   @Override
+  // Disponibiliza o uso em injeção para a instância do AuthenticationManager, que realiza o processo de auth
   public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }

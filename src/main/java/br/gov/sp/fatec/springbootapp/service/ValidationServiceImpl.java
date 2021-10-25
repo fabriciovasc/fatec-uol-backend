@@ -168,13 +168,17 @@ public class ValidationServiceImpl implements ValidationService {
         return null;
     }
 
+    // Rota Login
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Busca algum usuário com o username (e-mail)
         Registration registration = regRepo.findByEmail(username);
         if (registration == null) {
             throw new UsernameNotFoundException("Usuário " + username + " não encontrado!");
         }
+        // Retorna um UserDetails com os dados para a autenticação
         return User.builder().username(username).password(registration.getPassword())
+                // Cria uma lista do tipo String com cada autorização do usuário
                 .authorities(registration.getAuths().stream().map(Auth::getRole).collect(Collectors.toList())
                         .toArray(new String[registration.getAuths().size()]))
                 .build();
