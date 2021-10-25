@@ -168,7 +168,6 @@ public class ValidationServiceImpl implements ValidationService {
         return null;
     }
 
-    // Rota Login
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Busca algum usuário com o username (e-mail)
