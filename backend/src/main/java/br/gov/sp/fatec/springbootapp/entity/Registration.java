@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.node.NumericNode;
 
 import br.gov.sp.fatec.springbootapp.controller.View;
 
@@ -64,6 +65,34 @@ public class Registration {
     @Column(name = "registration_ip")
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String ip;
+
+    @Column(name = "registration_duration_time")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private Integer registerDuration;
+
+    @Column(name = "registration_accepted_terms_time")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private Integer acceptedTermsDuration;
+
+    @Column(name = "registration_start_date_register")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private String startRegisterDate;
+
+    @Column(name = "registration_end_date_register")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private String endRegisterDate;
+
+    @Column(name = "registration_scroll_x")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private String scroll_x;
+
+    @Column(name = "registration_scroll_y")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private String scroll_y;
+
+    @Column(name = "registration_scroll_millis")
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    private String scroll_millis;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
@@ -155,6 +184,62 @@ public class Registration {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public Integer getDurationTime() {
+        return this.registerDuration;
+    }
+
+    public void setDurationTime(Integer registerDuration) {
+        this.registerDuration = registerDuration;
+    }
+
+    public Integer getAcceptTermsTime() {
+        return this.acceptedTermsDuration;
+    }
+
+    public void setAcceptTermsTime(Integer acceptedTermsDuration) {
+        this.acceptedTermsDuration = acceptedTermsDuration;
+    }
+
+    public String getStartDateRegister() {
+        return this.startRegisterDate;
+    }
+
+    public void setStartDateRegister(String startRegisterDate) {
+        this.startRegisterDate = startRegisterDate;
+    }
+
+    public String getEndDateRegister() {
+        return this.endRegisterDate;
+    }
+
+    public void setEndDateRegister(String endRegisterDate) {
+        this.endRegisterDate = endRegisterDate;
+    }
+
+    public String getScrollX() {
+        return this.scroll_x;
+    }
+
+    public void setScrollX(String scroll_x) {
+        this.scroll_x = scroll_x;
+    }
+
+    public String getScrollY() {
+        return this.scroll_y;
+    }
+
+    public void setScrollY(String scroll_y) {
+        this.scroll_y = scroll_y;
+    }
+
+    public String getScrollMillis() {
+        return this.scroll_millis;
+    }
+
+    public void setScrollMillis(String scroll_millis) {
+        this.scroll_millis = scroll_millis;
     }
 
     public Set<Profile> getProfiles() {

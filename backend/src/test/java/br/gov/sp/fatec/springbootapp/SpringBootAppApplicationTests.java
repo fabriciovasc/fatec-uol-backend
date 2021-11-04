@@ -54,9 +54,15 @@ class SpringBootAppApplicationTests {
         reg1.setNameBrowser("teste");
         reg1.setVersionBrowser("teste");
         reg1.setSystem("teste");
-
         reg1.setGpuModel("teste");
         reg1.setIp("teste");
+        reg1.setDurationTime(1);
+        reg1.setAcceptTermsTime(1);
+        reg1.setStartDateRegister("teste");
+        reg1.setEndDateRegister("teste");
+        reg1.setScrollX("teste");
+        reg1.setScrollY("teste");
+        reg1.setScrollMillis("teste");
         regRepo.save(reg1);
 
         prof1 = new Profile();
@@ -83,6 +89,13 @@ class SpringBootAppApplicationTests {
 
         reg.setGpuModel("teste");
         reg.setIp("teste");
+        reg.setDurationTime(1);
+        reg.setAcceptTermsTime(1);
+        reg.setStartDateRegister("teste");
+        reg.setEndDateRegister("teste");
+        reg.setScrollX("teste");
+        reg.setScrollY("teste");
+        reg.setScrollMillis("teste");
         regRepo.save(reg);
         assertNotNull(reg.getId());
     }
@@ -105,6 +118,13 @@ class SpringBootAppApplicationTests {
 
         reg.setGpuModel("teste");
         reg.setIp("teste");
+        reg.setDurationTime(1);
+        reg.setAcceptTermsTime(1);
+        reg.setStartDateRegister("teste");
+        reg.setEndDateRegister("teste");
+        reg.setScrollX("teste");
+        reg.setScrollY("teste");
+        reg.setScrollMillis("teste");
         regRepo.save(reg);
         prof.getRegistrations().add(reg);
         profRepo.save(prof);
@@ -130,6 +150,13 @@ class SpringBootAppApplicationTests {
         reg.setSystem("teste");
         reg.setGpuModel("teste");
         reg.setIp("teste");
+        reg.setDurationTime(1);
+        reg.setAcceptTermsTime(1);
+        reg.setStartDateRegister("teste");
+        reg.setEndDateRegister("teste");
+        reg.setScrollX("teste");
+        reg.setScrollY("teste");
+        reg.setScrollMillis("teste");
         regRepo.save(reg);
 
         assertNotNull(regRepo.findByEmail("profile@profile.com").getId());
@@ -152,6 +179,13 @@ class SpringBootAppApplicationTests {
     
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
+        registrationDto.setDurationTime(1);
+        registrationDto.setAcceptTermsTime(1);
+        registrationDto.setStartDateRegister("teste");
+        registrationDto.setEndDateRegister("teste");
+        registrationDto.setScrollX("teste");
+        registrationDto.setScrollY("teste");
+        registrationDto.setScrollMillis("teste");
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService.createRegistration(registrationDto));
         assertTrue(runtimeException.getMessage().equals("Invalid params"));
     }
@@ -169,6 +203,13 @@ class SpringBootAppApplicationTests {
         reg.setSystem("teste");
         reg.setGpuModel("teste");
         reg.setIp("teste");
+        reg.setDurationTime(1);
+        reg.setAcceptTermsTime(1);
+        reg.setStartDateRegister("teste");
+        reg.setEndDateRegister("teste");
+        reg.setScrollX("teste");
+        reg.setScrollY("teste");
+        reg.setScrollMillis("teste");
         regRepo.save(reg);
 
         RegistrationDto registrationDto = new RegistrationDto();
@@ -184,6 +225,13 @@ class SpringBootAppApplicationTests {
         registrationDto.setSystem("teste");
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
+        registrationDto.setDurationTime(1);
+        registrationDto.setAcceptTermsTime(1);
+        registrationDto.setStartDateRegister("teste");
+        registrationDto.setEndDateRegister("teste");
+        registrationDto.setScrollX("teste");
+        registrationDto.setScrollY("teste");
+        registrationDto.setScrollMillis("teste");
 
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> validService.createRegistration(registrationDto));
@@ -206,6 +254,13 @@ class SpringBootAppApplicationTests {
         registrationDto.setSystem(hash);
         registrationDto.setGpuModel(hash);
         registrationDto.setIp(hash);
+        registrationDto.setDurationTime(1);
+        registrationDto.setAcceptTermsTime(1);
+        registrationDto.setStartDateRegister("teste");
+        registrationDto.setEndDateRegister("teste");
+        registrationDto.setScrollX("teste");
+        registrationDto.setScrollY("teste");
+        registrationDto.setScrollMillis("teste");
         assertNotNull(validService.createRegistration(registrationDto).getId());
     }
 
@@ -224,6 +279,13 @@ class SpringBootAppApplicationTests {
         registrationDto.setSystem("teste");
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
+        registrationDto.setDurationTime(1);
+        registrationDto.setAcceptTermsTime(1);
+        registrationDto.setStartDateRegister("teste");
+        registrationDto.setEndDateRegister("teste");
+        registrationDto.setScrollX("teste");
+        registrationDto.setScrollY("teste");
+        registrationDto.setScrollMillis("teste");
 
         RegistrationDto registrationDto2 = new RegistrationDto();
         registrationDto2.setEmail("profile2@profile2.com");
@@ -238,6 +300,13 @@ class SpringBootAppApplicationTests {
 
         registrationDto2.setGpuModel("teste");
         registrationDto2.setIp("teste");
+        registrationDto2.setDurationTime(1);
+        registrationDto2.setAcceptTermsTime(1);
+        registrationDto2.setStartDateRegister("teste");
+        registrationDto2.setEndDateRegister("teste");
+        registrationDto2.setScrollX("teste");
+        registrationDto2.setScrollY("teste");
+        registrationDto2.setScrollMillis("teste");
 
         validService.createRegistration(registrationDto);
         validService.createRegistration(registrationDto2);
