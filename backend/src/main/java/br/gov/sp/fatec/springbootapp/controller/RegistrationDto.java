@@ -24,6 +24,20 @@ public class RegistrationDto {
 
     public String ip;
 
+    public Integer registerDuration;
+
+    public Integer acceptedTermsDuration;
+
+    public String startRegisterDate;
+
+    public String endRegisterDate;
+
+    public String scroll_x;
+
+    public String scroll_y;
+
+    public String scroll_millis;
+
     public String getEmail() {
         return email;
     }
@@ -102,6 +116,62 @@ public class RegistrationDto {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public Integer getDurationTime() {
+        return this.registerDuration;
+    }
+
+    public void setDurationTime(Integer registerDuration) {
+        this.registerDuration = registerDuration;
+    }
+
+    public Integer getAcceptTermsTime() {
+        return this.acceptedTermsDuration;
+    }
+
+    public void setAcceptTermsTime(Integer acceptedTermsDuration) {
+        this.acceptedTermsDuration = acceptedTermsDuration;
+    }
+
+    public String getStartDateRegister() {
+        return this.startRegisterDate;
+    }
+
+    public void setStartDateRegister(String startRegisterDate) {
+        this.startRegisterDate = startRegisterDate;
+    }
+
+    public String getEndDateRegister() {
+        return this.endRegisterDate;
+    }
+
+    public void setEndDateRegister(String endRegisterDate) {
+        this.endRegisterDate = endRegisterDate;
+    }
+
+    public String getScrollX() {
+        return this.scroll_x;
+    }
+
+    public void setScrollX(String scroll_x) {
+        this.scroll_x = scroll_x;
+    }
+
+    public String getScrollY() {
+        return this.scroll_y;
+    }
+
+    public void setScrollY(String scroll_y) {
+        this.scroll_y = scroll_y;
+    }
+
+    public String getScrollMillis() {
+        return this.scroll_millis;
+    }
+
+    public void setScrollMillis(String scroll_millis) {
+        this.scroll_millis = scroll_millis;
     }
 
     public String getUniqueHash() {

@@ -33,7 +33,10 @@ public class ValidationServiceImpl implements ValidationService {
                 || registrationDto.getUniqueHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
                 || registrationDto.getNameBrowser().isEmpty()|| registrationDto.getVersionBrowser().isEmpty() 
                 || registrationDto.getSystem().isEmpty() || registrationDto.getGpuModel().isEmpty()
-                || registrationDto.getIp().isEmpty()) {
+                || registrationDto.getIp().isEmpty() || registrationDto.getDurationTime().equals(0)
+                || registrationDto.getAcceptTermsTime().equals(0) || registrationDto.getStartDateRegister().isEmpty()
+                || registrationDto.getEndDateRegister().isEmpty() || registrationDto.getScrollX().isEmpty()
+                || registrationDto.getScrollY().isEmpty() || registrationDto.getScrollMillis().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
         }
@@ -54,6 +57,13 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setSystem(registrationDto.getSystem());
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
+        registration.setDurationTime(registrationDto.getDurationTime());
+        registration.setAcceptTermsTime(registrationDto.getAcceptTermsTime());
+        registration.setStartDateRegister(registrationDto.getStartDateRegister());
+        registration.setEndDateRegister(registrationDto.getEndDateRegister());
+        registration.setScrollX(registrationDto.getScrollX());
+        registration.setScrollY(registrationDto.getScrollY());
+        registration.setScrollMillis(registrationDto.getScrollMillis());
         regRepo.save(registration);
 
         Profile profile = profRepo.findByUniqueHash(registrationDto.getUniqueHash());
