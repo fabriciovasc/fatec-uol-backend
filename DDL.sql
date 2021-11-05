@@ -3,6 +3,7 @@ create schema uol;
 use uol;
 
 create user 'user'@'localhost' identified by 'pass123';
+create user 'spark'@'localhost' identified by 'admin';
 
 grant select, insert, delete, update on uol.* to user@'localhost';
 
