@@ -37,9 +37,20 @@ Exemplo de corpo da requisição (POST, PUT)
   "password": "<password>",
   "name": "<name>",
   "cellphone": "<celular>",
-  "audioHash": "<hashqualquer>",
-  "webGLHash": "<hashqualquer>",
-  "canvasHash": "<hashqualquer>"
+  "userAgent": "<userAgent>",
+  "nameBrowser": "<nameBrowser>",
+  "versionBrowser": "<versionBrowser>",
+  "system": "<system>",
+  "gpuModel": "<gpuModel>",
+  "ip": "<ip>",
+  "uniqueHash": "<hashqualquer>",
+  "registerDuration": <registerDuration>,
+  "acceptedTermsDuration": <acceptedTermsDuration>,
+  "startRegisterDate": "<startRegisterDate>",
+  "endRegisterDate": "<endRegisterDate>",
+  "scroll_x": "[<scroll_x>]",
+  "scroll_y": "[<scroll_y>]",
+  "scroll_millis": "[<scroll_millis>]"
 }
 ```
 
