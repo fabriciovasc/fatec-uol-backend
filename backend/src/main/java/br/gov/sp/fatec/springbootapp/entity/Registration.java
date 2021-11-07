@@ -94,6 +94,10 @@ public class Registration {
     @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
     private String scroll_millis;
 
+    @Column(name = "registration_unique_hash")
+    @JsonView(View.ProfileView.class)
+    private String uniqueHash;
+
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
     private Set<Profile> profiles;
 
@@ -248,5 +252,14 @@ public class Registration {
 
     public void setProfiles(Set<Profile> profiles) {
         this.profiles = profiles;
+    }
+
+    
+    public String getUniqueHash() {
+        return uniqueHash;
+    }
+
+    public void setUniqueHash(String uniqueHash) {
+        this.uniqueHash = uniqueHash;
     }
 }
