@@ -64,6 +64,7 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setScrollX(registrationDto.getScrollX());
         registration.setScrollY(registrationDto.getScrollY());
         registration.setScrollMillis(registrationDto.getScrollMillis());
+        registration.setUniqueHash(registrationDto.getUniqueHash());
         regRepo.save(registration);
 
         Profile profile = profRepo.findByUniqueHash(registrationDto.getUniqueHash());

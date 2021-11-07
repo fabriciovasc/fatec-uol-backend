@@ -26,6 +26,7 @@ create table registration (
   registration_scroll_x varchar(1000) not null,
   registration_scroll_y varchar(1000) not null,
   registration_scroll_millis varchar(1000) not null,
+  registration_unique_hash varchar(255) not null,
   primary key (registration_id),
   unique key uni_registration_email (registration_email)
 );
