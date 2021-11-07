@@ -1,6 +1,5 @@
 ports:
   - port: 8080
 tasks:
-  - before: git checkout single-user-service
   - init: mysql < DDL.sql
 image: gitpod/workspace-mysql
