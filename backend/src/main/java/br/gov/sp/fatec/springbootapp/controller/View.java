@@ -10,12 +10,4 @@ public class View {
 
     };
 
-    public static class ProfileView {
-
-    };
-
-    public static class ProfileAllView extends ProfileView {
-
-    };
-
 }

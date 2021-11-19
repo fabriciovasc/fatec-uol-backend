@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashSet;
-import java.util.UUID;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +14,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
-import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
-import br.gov.sp.fatec.springbootapp.repository.ProfileRepository;
 import br.gov.sp.fatec.springbootapp.repository.RegistrationRepository;
 import br.gov.sp.fatec.springbootapp.service.ValidationService;
 
@@ -29,20 +24,15 @@ import br.gov.sp.fatec.springbootapp.service.ValidationService;
 class SpringBootAppApplicationTests {
 
     @Autowired
-    private ProfileRepository profRepo;
-
-    @Autowired
     private RegistrationRepository regRepo;
 
     @Autowired
     private ValidationService validService;
 
     private Registration reg1;
-    private Profile prof1;
 
     @BeforeEach()
     void init() {
-        profRepo.deleteAll();
         regRepo.deleteAll();
 
         reg1 = new Registration();
@@ -56,22 +46,7 @@ class SpringBootAppApplicationTests {
         reg1.setSystem("teste");
         reg1.setGpuModel("teste");
         reg1.setIp("teste");
-        reg1.setDurationTime(1);
-        reg1.setAcceptTermsTime(1);
-        reg1.setStartDateRegister("teste");
-        reg1.setEndDateRegister("teste");
-        reg1.setScrollX("teste");
-        reg1.setScrollY("teste");
-        reg1.setScrollMillis("teste");
         regRepo.save(reg1);
-
-        prof1 = new Profile();
-        prof1.setUniqueHash("qqwwee");
-        prof1.setUuid(UUID.randomUUID().toString());
-        prof1.setRegistrations(new HashSet<Registration>());
-        prof1.getRegistrations().add(reg1);
-        profRepo.save(prof1);
-        assertNotNull(prof1.getId());
     }
 
     @Test
@@ -89,23 +64,12 @@ class SpringBootAppApplicationTests {
 
         reg.setGpuModel("teste");
         reg.setIp("teste");
-        reg.setDurationTime(1);
-        reg.setAcceptTermsTime(1);
-        reg.setStartDateRegister("teste");
-        reg.setEndDateRegister("teste");
-        reg.setScrollX("teste");
-        reg.setScrollY("teste");
-        reg.setScrollMillis("teste");
         regRepo.save(reg);
         assertNotNull(reg.getId());
     }
 
     @Test
     void profileRepoSaveTest() {
-        Profile prof = new Profile();
-        prof.setUniqueHash("xxyyzz");
-        prof.setUuid(UUID.randomUUID().toString());
-        prof.setRegistrations(new HashSet<Registration>());
         Registration reg = new Registration();
         reg.setEmail("profile@profile.com");
         reg.setName("profile");
@@ -118,22 +82,7 @@ class SpringBootAppApplicationTests {
 
         reg.setGpuModel("teste");
         reg.setIp("teste");
-        reg.setDurationTime(1);
-        reg.setAcceptTermsTime(1);
-        reg.setStartDateRegister("teste");
-        reg.setEndDateRegister("teste");
-        reg.setScrollX("teste");
-        reg.setScrollY("teste");
-        reg.setScrollMillis("teste");
         regRepo.save(reg);
-        prof.getRegistrations().add(reg);
-        profRepo.save(prof);
-        assertNotNull(prof.getRegistrations().iterator().next().getId());
-    }
-
-    @Test
-    void profileRepoFindByHashes() {
-        assertNotNull(profRepo.findByUniqueHash("qqwwee").getId());
     }
 
     @Test
@@ -150,13 +99,6 @@ class SpringBootAppApplicationTests {
         reg.setSystem("teste");
         reg.setGpuModel("teste");
         reg.setIp("teste");
-        reg.setDurationTime(1);
-        reg.setAcceptTermsTime(1);
-        reg.setStartDateRegister("teste");
-        reg.setEndDateRegister("teste");
-        reg.setScrollX("teste");
-        reg.setScrollY("teste");
-        reg.setScrollMillis("teste");
         regRepo.save(reg);
 
         assertNotNull(regRepo.findByEmail("profile@profile.com").getId());
@@ -169,24 +111,16 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
-        registrationDto.setUserAgent("teste");
 
         registrationDto.setNameBrowser("teste");
         registrationDto.setVersionBrowser("teste");
         registrationDto.setSystem("teste");
-    
+
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
-        registrationDto.setDurationTime(1);
-        registrationDto.setAcceptTermsTime(1);
-        registrationDto.setStartDateRegister("teste");
-        registrationDto.setEndDateRegister("teste");
-        registrationDto.setScrollX("teste");
-        registrationDto.setScrollY("teste");
-        registrationDto.setScrollMillis("teste");
-        RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> validService.createRegistration(registrationDto));
+        RuntimeException runtimeException = assertThrows(RuntimeException.class,
+                () -> validService.createRegistration(registrationDto));
         assertTrue(runtimeException.getMessage().equals("Invalid params"));
     }
 
@@ -203,13 +137,6 @@ class SpringBootAppApplicationTests {
         reg.setSystem("teste");
         reg.setGpuModel("teste");
         reg.setIp("teste");
-        reg.setDurationTime(1);
-        reg.setAcceptTermsTime(1);
-        reg.setStartDateRegister("teste");
-        reg.setEndDateRegister("teste");
-        reg.setScrollX("teste");
-        reg.setScrollY("teste");
-        reg.setScrollMillis("teste");
         regRepo.save(reg);
 
         RegistrationDto registrationDto = new RegistrationDto();
@@ -217,21 +144,12 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setUniqueHash("xxxyyyzzz");
         registrationDto.setUserAgent("xxxyyyzzz");
-        registrationDto.setUserAgent("teste");
         registrationDto.setNameBrowser("teste");
         registrationDto.setVersionBrowser("teste");
         registrationDto.setSystem("teste");
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
-        registrationDto.setDurationTime(1);
-        registrationDto.setAcceptTermsTime(1);
-        registrationDto.setStartDateRegister("teste");
-        registrationDto.setEndDateRegister("teste");
-        registrationDto.setScrollX("teste");
-        registrationDto.setScrollY("teste");
-        registrationDto.setScrollMillis("teste");
 
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
                 () -> validService.createRegistration(registrationDto));
@@ -246,21 +164,12 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setUniqueHash("xxxyyyzzz");
-        registrationDto.setUserAgent("xxxyyyzzz");
         registrationDto.setUserAgent(hash);
         registrationDto.setNameBrowser(hash);
         registrationDto.setVersionBrowser(hash);
         registrationDto.setSystem(hash);
         registrationDto.setGpuModel(hash);
         registrationDto.setIp(hash);
-        registrationDto.setDurationTime(1);
-        registrationDto.setAcceptTermsTime(1);
-        registrationDto.setStartDateRegister("teste");
-        registrationDto.setEndDateRegister("teste");
-        registrationDto.setScrollX("teste");
-        registrationDto.setScrollY("teste");
-        registrationDto.setScrollMillis("teste");
         assertNotNull(validService.createRegistration(registrationDto).getId());
     }
 
@@ -272,27 +181,19 @@ class SpringBootAppApplicationTests {
         registrationDto.setPassword("password");
         registrationDto.setName("profile");
         registrationDto.setCellphone("999999999");
-        registrationDto.setUniqueHash(hash);
+
         registrationDto.setUserAgent(hash);
         registrationDto.setNameBrowser("teste");
         registrationDto.setVersionBrowser("teste");
         registrationDto.setSystem("teste");
         registrationDto.setGpuModel("teste");
         registrationDto.setIp("teste");
-        registrationDto.setDurationTime(1);
-        registrationDto.setAcceptTermsTime(1);
-        registrationDto.setStartDateRegister("teste");
-        registrationDto.setEndDateRegister("teste");
-        registrationDto.setScrollX("teste");
-        registrationDto.setScrollY("teste");
-        registrationDto.setScrollMillis("teste");
 
         RegistrationDto registrationDto2 = new RegistrationDto();
         registrationDto2.setEmail("profile2@profile2.com");
         registrationDto2.setPassword("password");
         registrationDto2.setName("profile");
         registrationDto2.setCellphone("999999999");
-        registrationDto2.setUniqueHash(hash);
         registrationDto2.setUserAgent(hash);
         registrationDto2.setNameBrowser("teste");
         registrationDto2.setVersionBrowser("teste");
@@ -300,38 +201,12 @@ class SpringBootAppApplicationTests {
 
         registrationDto2.setGpuModel("teste");
         registrationDto2.setIp("teste");
-        registrationDto2.setDurationTime(1);
-        registrationDto2.setAcceptTermsTime(1);
-        registrationDto2.setStartDateRegister("teste");
-        registrationDto2.setEndDateRegister("teste");
-        registrationDto2.setScrollX("teste");
-        registrationDto2.setScrollY("teste");
-        registrationDto2.setScrollMillis("teste");
 
         validService.createRegistration(registrationDto);
         validService.createRegistration(registrationDto2);
-        assertEquals(regRepo.findByOneOfHashes(hash).size(), 2);
     }
 
     @Test
-    void validationServiceFindProfileException() {
-        Long id = 12345678910L;
-        RuntimeException runtimeException = assertThrows(RuntimeException.class,
-                () -> validService.findProfileById(id));
-        assertTrue(runtimeException.getMessage().equals("Profile not found for id: " + id));
-    }
-
-    @Test
-    void validationServiceFindProfileById() {
-        assertNotNull(validService.findProfileById(prof1.getId()));
-    }
-
-    @Test
-    void validationServiceFindProfileByHash() {
-        assertNotNull(validService.findProfileByHash(prof1.getUniqueHash()));
-    }
-
-    @Test 
     void validationServiceFindRegistrationException() {
         Long id = 12345678910L;
         RuntimeException runtimeException = assertThrows(RuntimeException.class,
@@ -345,13 +220,7 @@ class SpringBootAppApplicationTests {
     }
 
     @Test
-    void validationServiceDeleteProfile() {
-        assertNotNull(validService.deleteProfile(prof1.getId()));
-    }
-
-    @Test
     void validationServiceDeleteRegistration() {
-        assertNotNull(validService.deleteProfile(prof1.getId()));
         assertNotNull(validService.deleteRegistration(reg1.getId()));
     }
 
@@ -365,6 +234,5 @@ class SpringBootAppApplicationTests {
     @AfterEach
     void exit() {
         regRepo.deleteAll();
-        profRepo.deleteAll();
     }
 }

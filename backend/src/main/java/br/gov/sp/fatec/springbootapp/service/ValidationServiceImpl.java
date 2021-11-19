@@ -1,9 +1,7 @@
 package br.gov.sp.fatec.springbootapp.service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -11,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
-import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
-import br.gov.sp.fatec.springbootapp.repository.ProfileRepository;
 import br.gov.sp.fatec.springbootapp.repository.RegistrationRepository;
 
 @Service("ValidationService")
@@ -22,21 +18,15 @@ public class ValidationServiceImpl implements ValidationService {
     @Autowired
     private RegistrationRepository regRepo;
 
-    @Autowired
-    private ProfileRepository profRepo;
-
     @Transactional
     public Registration createRegistration(RegistrationDto registrationDto) {
 
         if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
                 || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
-                || registrationDto.getUniqueHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
-                || registrationDto.getNameBrowser().isEmpty()|| registrationDto.getVersionBrowser().isEmpty() 
-                || registrationDto.getSystem().isEmpty() || registrationDto.getGpuModel().isEmpty()
-                || registrationDto.getIp().isEmpty() || registrationDto.getDurationTime().equals(0)
-                || registrationDto.getAcceptTermsTime().equals(0) || registrationDto.getStartDateRegister().isEmpty()
-                || registrationDto.getEndDateRegister().isEmpty() || registrationDto.getScrollX().isEmpty()
-                || registrationDto.getScrollY().isEmpty() || registrationDto.getScrollMillis().isEmpty()) {
+                || registrationDto.getUserAgent().isEmpty() || registrationDto.getNameBrowser().isEmpty()
+                || registrationDto.getVersionBrowser().isEmpty() || registrationDto.getSystem().isEmpty()
+                || registrationDto.getGpuModel().isEmpty() || registrationDto.getIp().isEmpty()
+                || registrationDto.getScrollInput().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
         }
@@ -57,48 +47,10 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setSystem(registrationDto.getSystem());
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
-        registration.setDurationTime(registrationDto.getDurationTime());
-        registration.setAcceptTermsTime(registrationDto.getAcceptTermsTime());
-        registration.setStartDateRegister(registrationDto.getStartDateRegister());
-        registration.setEndDateRegister(registrationDto.getEndDateRegister());
-        registration.setScrollX(registrationDto.getScrollX());
-        registration.setScrollY(registrationDto.getScrollY());
-        registration.setScrollMillis(registrationDto.getScrollMillis());
-        registration.setUniqueHash(registrationDto.getUniqueHash());
+        registration.setScrollInput(registrationDto.getScrollInput());
         regRepo.save(registration);
 
-        Profile profile = profRepo.findByUniqueHash(registrationDto.getUniqueHash());
-        if (profile == null) {
-            profile = new Profile();
-            profile.setUuid(UUID.randomUUID().toString());
-            profile.setUniqueHash(registrationDto.getUniqueHash());
-            profile.setRegistrations(new HashSet<Registration>());
-        }
-
-        profile.getRegistrations().add(registration);
-        profRepo.save(profile);
-
         return registration;
-    }
-
-    public List<Profile> findAllProfiles() {
-        return profRepo.findAll();
-    }
-
-    public Profile findProfileById(Long id) {
-        Optional<Profile> profileOptional = profRepo.findById(id);
-        if (profileOptional.isPresent()) {
-            return profileOptional.get();
-        }
-        throw new RuntimeException("Profile not found for id: " + id);
-    }
-
-    public Profile findProfileByHash(String hash) {
-        Profile profile = profRepo.findByUniqueHash(hash);
-        if (profile != null) {
-            return profile;
-        }
-        throw new RuntimeException("Profile not found for hash: " + hash);
     }
 
     public List<Registration> findAllRegistrations() {
@@ -111,15 +63,6 @@ public class ValidationServiceImpl implements ValidationService {
             return registrationOptional.get();
         }
         throw new RuntimeException("Registration not found for id: " + id);
-    }
-
-    public Long deleteProfile(Long id) {
-        Optional<Profile> pOptional = profRepo.findById(id);
-        if (pOptional.isPresent()) {
-            profRepo.delete(pOptional.get());
-            return id;
-        }
-        return null;
     }
 
     public Long deleteRegistration(Long id) {
