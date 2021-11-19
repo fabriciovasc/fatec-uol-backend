@@ -17,9 +17,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
-import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
-import br.gov.sp.fatec.springbootapp.repository.ProfileRepository;
 import br.gov.sp.fatec.springbootapp.repository.RegistrationRepository;
 import br.gov.sp.fatec.springbootapp.service.ValidationService;
 
@@ -29,20 +27,15 @@ import br.gov.sp.fatec.springbootapp.service.ValidationService;
 class SpringBootAppApplicationTests {
 
     @Autowired
-    private ProfileRepository profRepo;
-
-    @Autowired
     private RegistrationRepository regRepo;
 
     @Autowired
     private ValidationService validService;
 
     private Registration reg1;
-    private Profile prof1;
 
     @BeforeEach()
     void init() {
-        profRepo.deleteAll();
         regRepo.deleteAll();
 
         reg1 = new Registration();
@@ -64,14 +57,6 @@ class SpringBootAppApplicationTests {
         reg1.setScrollY("teste");
         reg1.setScrollMillis("teste");
         regRepo.save(reg1);
-
-        prof1 = new Profile();
-        prof1.setUniqueHash("qqwwee");
-        prof1.setUuid(UUID.randomUUID().toString());
-        prof1.setRegistrations(new HashSet<Registration>());
-        prof1.getRegistrations().add(reg1);
-        profRepo.save(prof1);
-        assertNotNull(prof1.getId());
     }
 
     @Test
@@ -102,10 +87,6 @@ class SpringBootAppApplicationTests {
 
     @Test
     void profileRepoSaveTest() {
-        Profile prof = new Profile();
-        prof.setUniqueHash("xxyyzz");
-        prof.setUuid(UUID.randomUUID().toString());
-        prof.setRegistrations(new HashSet<Registration>());
         Registration reg = new Registration();
         reg.setEmail("profile@profile.com");
         reg.setName("profile");
@@ -126,9 +107,6 @@ class SpringBootAppApplicationTests {
         reg.setScrollY("teste");
         reg.setScrollMillis("teste");
         regRepo.save(reg);
-        prof.getRegistrations().add(reg);
-        profRepo.save(prof);
-        assertNotNull(prof.getRegistrations().iterator().next().getId());
     }
 
     @Test
@@ -321,16 +299,6 @@ class SpringBootAppApplicationTests {
         assertTrue(runtimeException.getMessage().equals("Profile not found for id: " + id));
     }
 
-    @Test
-    void validationServiceFindProfileById() {
-        assertNotNull(validService.findProfileById(prof1.getId()));
-    }
-
-    @Test
-    void validationServiceFindProfileByHash() {
-        assertNotNull(validService.findProfileByHash(prof1.getUniqueHash()));
-    }
-
     @Test 
     void validationServiceFindRegistrationException() {
         Long id = 12345678910L;
@@ -345,13 +313,7 @@ class SpringBootAppApplicationTests {
     }
 
     @Test
-    void validationServiceDeleteProfile() {
-        assertNotNull(validService.deleteProfile(prof1.getId()));
-    }
-
-    @Test
     void validationServiceDeleteRegistration() {
-        assertNotNull(validService.deleteProfile(prof1.getId()));
         assertNotNull(validService.deleteRegistration(reg1.getId()));
     }
 

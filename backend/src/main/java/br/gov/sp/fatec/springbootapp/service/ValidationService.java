@@ -10,17 +10,9 @@ public interface ValidationService {
 
     public Registration createRegistration(RegistrationDto registration);
 
-    public List<Profile> findAllProfiles();
-
-    public Profile findProfileById(Long id);
-
-    public Profile findProfileByHash(String hash);
-
     public List<Registration> findAllRegistrations();
 
     public Registration findRegistrationById(Long id);
-
-    public Long deleteProfile(Long id);
 
     public Long deleteRegistration(Long id);
 

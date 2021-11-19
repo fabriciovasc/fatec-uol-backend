@@ -23,11 +23,11 @@ public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "registration_id")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private Long id;
 
     @Column(name = "registration_email")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String email;
 
     @Column(name = "registration_password")
@@ -35,71 +35,69 @@ public class Registration {
     private String password;
 
     @Column(name = "registration_name")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String name;
 
     @Column(name = "registration_cellphone")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String cellphone;
 
     @Column(name = "registration_user_agent")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String userAgent;
 
     @Column(name = "registration_name_browser")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String nameBrowser;
 
     @Column(name = "registration_version_browser")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String versionBrowser;
 
     @Column(name = "registration_system")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String system;
 
     @Column(name = "registration_gpu_model")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String gpuModel;
 
     @Column(name = "registration_ip")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String ip;
 
     @Column(name = "registration_duration_time")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private Integer registerDuration;
 
     @Column(name = "registration_accepted_terms_time")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private Integer acceptedTermsDuration;
 
     @Column(name = "registration_start_date_register")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String startRegisterDate;
 
     @Column(name = "registration_end_date_register")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String endRegisterDate;
 
     @Column(name = "registration_scroll_x")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String scroll_x;
 
     @Column(name = "registration_scroll_y")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String scroll_y;
 
     @Column(name = "registration_scroll_millis")
-    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class, View.ProfileAllView.class})
+    @JsonView({View.RegistrationAllView.class, View.RegistrationView.class})
     private String scroll_millis;
 
     @Column(name = "registration_unique_hash")
     @JsonView(View.ProfileView.class)
     private String uniqueHash;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "registrations")
-    private Set<Profile> profiles;
 
     public Long getId() {
         return this.id;
@@ -245,15 +243,6 @@ public class Registration {
     public void setScrollMillis(String scroll_millis) {
         this.scroll_millis = scroll_millis;
     }
-
-    public Set<Profile> getProfiles() {
-        return profiles;
-    }
-
-    public void setProfiles(Set<Profile> profiles) {
-        this.profiles = profiles;
-    }
-
     
     public String getUniqueHash() {
         return uniqueHash;
