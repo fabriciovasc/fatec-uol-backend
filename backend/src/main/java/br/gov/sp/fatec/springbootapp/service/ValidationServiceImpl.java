@@ -1,9 +1,7 @@
 package br.gov.sp.fatec.springbootapp.service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -11,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.gov.sp.fatec.springbootapp.controller.RegistrationDto;
-import br.gov.sp.fatec.springbootapp.entity.Profile;
 import br.gov.sp.fatec.springbootapp.entity.Registration;
-import br.gov.sp.fatec.springbootapp.repository.ProfileRepository;
 import br.gov.sp.fatec.springbootapp.repository.RegistrationRepository;
 
 @Service("ValidationService")
@@ -22,19 +18,15 @@ public class ValidationServiceImpl implements ValidationService {
     @Autowired
     private RegistrationRepository regRepo;
 
-
     @Transactional
     public Registration createRegistration(RegistrationDto registrationDto) {
 
         if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
                 || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
-                || registrationDto.getUniqueHash().isEmpty() || registrationDto.getUserAgent().isEmpty()
-                || registrationDto.getNameBrowser().isEmpty()|| registrationDto.getVersionBrowser().isEmpty() 
-                || registrationDto.getSystem().isEmpty() || registrationDto.getGpuModel().isEmpty()
-                || registrationDto.getIp().isEmpty() || registrationDto.getDurationTime().equals(0)
-                || registrationDto.getAcceptTermsTime().equals(0) || registrationDto.getStartDateRegister().isEmpty()
-                || registrationDto.getEndDateRegister().isEmpty() || registrationDto.getScrollX().isEmpty()
-                || registrationDto.getScrollY().isEmpty() || registrationDto.getScrollMillis().isEmpty()) {
+                || registrationDto.getUserAgent().isEmpty() || registrationDto.getNameBrowser().isEmpty()
+                || registrationDto.getVersionBrowser().isEmpty() || registrationDto.getSystem().isEmpty()
+                || registrationDto.getGpuModel().isEmpty() || registrationDto.getIp().isEmpty()
+                || registrationDto.getScrollInput().isEmpty()) {
 
             throw new RuntimeException("Invalid params");
         }
@@ -55,14 +47,7 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setSystem(registrationDto.getSystem());
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
-        registration.setDurationTime(registrationDto.getDurationTime());
-        registration.setAcceptTermsTime(registrationDto.getAcceptTermsTime());
-        registration.setStartDateRegister(registrationDto.getStartDateRegister());
-        registration.setEndDateRegister(registrationDto.getEndDateRegister());
-        registration.setScrollX(registrationDto.getScrollX());
-        registration.setScrollY(registrationDto.getScrollY());
-        registration.setScrollMillis(registrationDto.getScrollMillis());
-        registration.setUniqueHash(registrationDto.getUniqueHash());
+        registration.setScrollInput(registrationDto.getScrollInput());
         regRepo.save(registration);
 
         return registration;

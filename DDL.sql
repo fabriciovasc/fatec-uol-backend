@@ -18,14 +18,7 @@ create table registration (
   registration_system varchar(255) not null,
   registration_gpu_model varchar(255) not null,
   registration_ip varchar(255) not null,
-  registration_duration_time int not null,
-  registration_accepted_terms_time int not null,
-  registration_start_date_register varchar(255) not null,
-  registration_end_date_register varchar(255) not null,
-  registration_scroll_x varchar(1000) not null,
-  registration_scroll_y varchar(1000) not null,
-  registration_scroll_millis varchar(1000) not null,
-  registration_unique_hash varchar(255) not null,
+  registration_scroll_input varchar(1000) not null,
   primary key (registration_id),
   unique key uni_registration_email (registration_email)
 );
