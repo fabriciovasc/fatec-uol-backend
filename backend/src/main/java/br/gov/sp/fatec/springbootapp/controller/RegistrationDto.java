@@ -26,6 +26,8 @@ public class RegistrationDto {
 
     public String scrollInput;
 
+    public String keyboardInput;
+
     public String getEmail() {
         return email;
     }
@@ -112,6 +114,14 @@ public class RegistrationDto {
 
     public void setScrollInput(String scrollInput) {
         this.scrollInput = scrollInput;
+    }
+
+    public String getKeyboardInput() {
+        return this.keyboardInput;
+    }
+
+    public void setKeyboardInput(String keyboardInput) {
+        this.keyboardInput = keyboardInput;
     }
     
 }

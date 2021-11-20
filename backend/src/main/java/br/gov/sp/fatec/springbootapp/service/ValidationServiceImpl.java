@@ -21,16 +21,6 @@ public class ValidationServiceImpl implements ValidationService {
     @Transactional
     public Registration createRegistration(RegistrationDto registrationDto) {
 
-        if (registrationDto.getEmail().isEmpty() || registrationDto.getPassword().isEmpty()
-                || registrationDto.getName().isEmpty() || registrationDto.getCellphone().isEmpty()
-                || registrationDto.getUserAgent().isEmpty() || registrationDto.getNameBrowser().isEmpty()
-                || registrationDto.getVersionBrowser().isEmpty() || registrationDto.getSystem().isEmpty()
-                || registrationDto.getGpuModel().isEmpty() || registrationDto.getIp().isEmpty()
-                || registrationDto.getScrollInput().isEmpty()) {
-
-            throw new RuntimeException("Invalid params");
-        }
-
         Registration registration = regRepo.findByEmail(registrationDto.getEmail());
         if (registration != null) {
             throw new RuntimeException("The email address must be unique");
@@ -48,6 +38,7 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
         registration.setScrollInput(registrationDto.getScrollInput());
+        registration.setKeyboardInput(registrationDto.getKeyboardInput());
         regRepo.save(registration);
 
         return registration;
