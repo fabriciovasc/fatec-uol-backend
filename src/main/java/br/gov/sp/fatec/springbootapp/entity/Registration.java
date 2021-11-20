@@ -61,11 +61,11 @@ public class Registration {
     @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
     private String ip;
 
-    @Column(name = "registration_scroll_input")
+    @Column(name = "registration_scroll_input", columnDefinition = "text")
     @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
     private String scrollInput;
 
-    @Column(name = "registration_keyboard_input")
+    @Column(name = "registration_keyboard_input", columnDefinition = "text")
     @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
     private String keyboardInput;
 
