@@ -5,7 +5,7 @@ Repositório de desenvolvimento do back-end do Aprendizado por Projeto Integrado
 
 ## :pushpin: Acesso ao frontend
 Nesta seção você terá acesso as informações da API em seu estado final.
-{URL} ('https://pure-refuge-94212.herokuapp.com/')
+[URL]('https://pure-refuge-94212.herokuapp.com/')
 ```
 Url: https://pure-refuge-94212.herokuapp.com/
 ```
