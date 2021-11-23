@@ -3,24 +3,18 @@
 # fatec-uol-backend
 Repositório de desenvolvimento do back-end do Aprendizado por Projeto Integrador (API) da FATEC São José dos Campos.
 
-## :clipboard: Requisitos
-Você precisará iniciar este projeto através da plataforma do GitPod.
+## :pushpin: Acesso ao frontend
+Nesta seção você terá acesso as informações da API em seu estado final.
+```
+Url: https://pure-refuge-94212.herokuapp.com/
+```
 
-## :gear: Configuração
-Rodar projeto
-```
-mvn spring-boot:run
-```
-Rodar testes
-```
-mvn test
-```
 ## :pushpin: Informações da API
 Nesta seção você terá acesso as informações para requisições da API.
 
 ```
-<base_url>: Significa a URL gerada pelo workspace do GitPod.
-Exemplo: https://8080-blush-mandrill-7o4f6lia.ws-us18.gitpod.io
+<base_url>: Significa a URL base do backend.
+Url backend: http://desolate-sands-04735.herokuapp.com
 ```
 
 Root
@@ -33,24 +27,18 @@ RESPONSE: Bem vindo a API do BOL.com.br!
 Exemplo de corpo da requisição (POST, PUT)
 ```
 {
-  "email": "<email>",
-  "password": "<password>",
-  "name": "<name>",
-  "cellphone": "<celular>",
-  "userAgent": "<userAgent>",
-  "nameBrowser": "<nameBrowser>",
-  "versionBrowser": "<versionBrowser>",
-  "system": "<system>",
-  "gpuModel": "<gpuModel>",
-  "ip": "<ip>",
-  "uniqueHash": "<hashqualquer>",
-  "registerDuration": <registerDuration>,
-  "acceptedTermsDuration": <acceptedTermsDuration>,
-  "startRegisterDate": "<startRegisterDate>",
-  "endRegisterDate": "<endRegisterDate>",
-  "scroll_x": "[<scroll_x>]",
-  "scroll_y": "[<scroll_y>]",
-  "scroll_millis": "[<scroll_millis>]"
+    "email": "<email>",
+    "password": "<password>",
+    "name": "<name>",
+    "cellphone": "<celular>",
+    "userAgent": "<userAgent>",
+    "nameBrowser": "<nameBrowser>",
+    "versionBrowser": "<versionBrowser>",
+    "system": "<system>",
+    "gpuModel":  "<gpuModel>",
+    "ip": "<ip>",
+    "scrollInput": "<scrollInput>",
+    "keyboardInput": "<keyboardInput>",
 }
 ```
 
