@@ -1,5 +1,7 @@
 package br.gov.sp.fatec.springbootapp.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +41,10 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setIp(registrationDto.getIp());
         registration.setScrollInput(registrationDto.getScrollInput());
         registration.setKeyboardInput(registrationDto.getKeyboardInput());
+        SimpleDateFormat fmt = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");   
+        Date date = new Date();
+        String time = fmt.format(date);
+        registration.setTime(time);
         regRepo.save(registration);
 
         return registration;

@@ -69,8 +69,20 @@ public class Registration {
     @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
     private String keyboardInput;
 
+    @Column(name = "registration_time", columnDefinition = "text")
+    @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
+    private String time;
+
     public Long getId() {
         return this.id;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setId(Long id) {
