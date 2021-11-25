@@ -61,10 +61,6 @@ public class Registration {
     @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
     private String ip;
 
-    @Column(name = "registration_scroll_input", columnDefinition = "text")
-    @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
-    private String scrollInput;
-
     @Column(name = "registration_keyboard_input", columnDefinition = "text")
     @JsonView({ View.RegistrationAllView.class, View.RegistrationView.class })
     private String keyboardInput;
@@ -169,15 +165,6 @@ public class Registration {
         this.ip = ip;
     }
 
-    public String getScrollInput() {
-        return this.scrollInput;
-    }
-
-    public void setScrollInput(String scrollInput) {
-        this.scrollInput = scrollInput;
-    }
-
-    
     public String getKeyboardInput() {
         return this.keyboardInput;
     }

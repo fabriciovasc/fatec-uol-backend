@@ -39,7 +39,6 @@ public class ValidationServiceImpl implements ValidationService {
         registration.setSystem(registrationDto.getSystem());
         registration.setGpuModel(registrationDto.getGpuModel());
         registration.setIp(registrationDto.getIp());
-        registration.setScrollInput(registrationDto.getScrollInput());
         registration.setKeyboardInput(registrationDto.getKeyboardInput());
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
         Date date = new Date();

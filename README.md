@@ -37,7 +37,6 @@ Exemplo de corpo da requisição (POST, PUT)
     "system": "<system>",
     "gpuModel":  "<gpuModel>",
     "ip": "<ip>",
-    "scrollInput": "<scrollInput>",
     "keyboardInput": "<keyboardInput>",
 }
 ```

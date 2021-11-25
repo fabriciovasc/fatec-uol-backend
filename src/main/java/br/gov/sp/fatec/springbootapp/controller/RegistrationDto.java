@@ -24,8 +24,6 @@ public class RegistrationDto {
 
     public String ip;
 
-    public String scrollInput;
-
     public String keyboardInput;
 
     public String getEmail() {
@@ -106,14 +104,6 @@ public class RegistrationDto {
 
     public void setIp(String ip) {
         this.ip = ip;
-    }
-
-    public String getScrollInput() {
-        return this.scrollInput;
-    }
-
-    public void setScrollInput(String scrollInput) {
-        this.scrollInput = scrollInput;
     }
 
     public String getKeyboardInput() {
