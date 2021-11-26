@@ -8,7 +8,7 @@ Nesta seção você terá acesso as informações para requisições da API.
 
 ```
 <base_url>: Significa a URL base do backend.
-Ambiente publicado: https://pure-refuge-94212.herokuapp.com/
+Ambiente publicado: https://desolate-sands-04735.herokuapp.com/
 ```
 
 Root
