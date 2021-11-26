@@ -3,18 +3,12 @@
 # fatec-uol-backend
 Repositório de desenvolvimento do back-end do Aprendizado por Projeto Integrador (API) da FATEC São José dos Campos.
 
-## :pushpin: Acesso ao frontend
-Nesta seção você terá acesso as informações da API em seu estado final.
-```
-Url: https://pure-refuge-94212.herokuapp.com/
-```
-
 ## :pushpin: Informações da API
 Nesta seção você terá acesso as informações para requisições da API.
 
 ```
 <base_url>: Significa a URL base do backend.
-Url backend: http://desolate-sands-04735.herokuapp.com
+Ambiente publicado: https://pure-refuge-94212.herokuapp.com/
 ```
 
 Root
@@ -64,36 +58,4 @@ PUT
 DELETE
 ```
 <base_url>/api/registration/:id
-```
-
-Profile
-
-GET
-```
-<base_url>/api/profile
-```
-
-GET
-```
-<base_url>/api/profile/:id
-```
-
-DELETE
-```
-<base_url>/api/profile/:id
-```
-
-Login
-
-POST
-```
-<base_url>/api/login
-```
-
-BODY
-```
-{
-  username: <email>
-  password: <senha>
-}
 ```
